@@ -1,0 +1,28 @@
+# Git ignore file for the prisoner's dilemma project
+# generic
+*~*
+
+# latex specific
+*.aux
+*.dvi
+*.log
+*.lyx
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*eepic
+
+# misc file types
+*.bak
+*.eps
+*.jpg
+*.pdf
+
+# directories 
+
+# special files
+*matlab*
+*octave*
+
