@@ -18,8 +18,16 @@ param = ...
        'payoffCC', 3, 'payoffCD', 0, 'payoffDC', 5, 'payoffDD', 1);
 
 % main data structures
+
+% population cell array:
+% each element in the cell array contais a row vector that is the individual's chromosome. The lenth L of the chromosome varies, but disides the individuals memory size M.
+% 
+%    L = 2^M 
+%
+% M is non-negative integer.
 population = cell(param.nIndiviuals, 1);
-newPopulation = cell(param.nIndividuals, 1);
+
+newPopulation = cell(param.nIndividuals, 1); % exactly as population
 fitness = zeros(param.nIndividuals, 1);  % straight w r t population
 rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
 expectation = zeros(param,nIndividuals, 1); % straight values w r t rankOrder
