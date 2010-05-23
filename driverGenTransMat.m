@@ -17,7 +17,7 @@ clear all;
 
 % test prob == 0
 param = struct( 'pError', 0.0);
- param.pError = 0.03; %rand(1);
+ param.pError = 0.09; %rand(1);
 
 
 
@@ -57,18 +57,18 @@ outMats{3} = genTransMat(tables{3}, param);
 
 
 % test: compare to expeced version
-for i = 1:2
-  if find (outMats{i} - expMats{i}) % then not OK
-    isOk(i) = 0;
-    disp (['Test ' num2str(i) ', output, not OK.']);
-    disp ('Table:');
-    disp (tables{i});
-    disp ('Expected:');
-    disp (expMats{i});
-    disp ('got');
-    disp (outMats{i});
-  else
-    isOk(i) = 1;
+if param.pError == 0
+  for i = 1:2
+    if find (outMats{i} - expMats{i}) % then not OK
+      isOk(i) = 0;
+      disp (['Test ' num2str(i) ', output, not OK.']);
+      disp ('Table:');
+      disp (tables{i});
+      disp ('Expected:');
+      disp (expMats{i});
+      disp ('got');
+      disp (outMats{i});
+    end
   end
 end
 
@@ -85,8 +85,6 @@ for i = 1:numTests
     disp (tables{i});
     disp ('Output marix:');
     disp (outMats{i});
-  else
-    isOk(i) = 1;
   end
 end
 

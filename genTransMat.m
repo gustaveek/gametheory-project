@@ -25,13 +25,13 @@ function rMat = genTransMat (aTab, aParam)
   prob3 = (1 - prob) * prob;
   prob1 = (1 - prob) * (1 - prob);
 
-  % FIX so that the function can coope with errors. 
-  if (prob ~= 0.0)
-    error('Noise level not zero.');
-  end
+%   % FIX so that the function can coope with errors. 
+%   if (prob ~= 0.0)
+%     error('Noise level not zero.');
+%   end
   
   % initilize empty matrix
-  rMat = zeros (dim);
+  rMat  = zeros (dim);
   xMeas = zeros(1, blockLevs);
   yMeas = zeros(1, blockLevs);
 
@@ -72,7 +72,7 @@ function rMat = genTransMat (aTab, aParam)
 	  factorA * factorB * prob1 + ...
 	  factorA * (1 - factorB) * prob3 + ...
 	  (1 - factorA) * factorB * prob3 + ...
-	  (1 - factorB) * (1 - factorB) * prob4;
+	  (1 - factorA) * (1 - factorB) * prob4;
 
     end % for all jForm
   end % for all iTo
