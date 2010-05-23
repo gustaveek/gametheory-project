@@ -47,8 +47,8 @@ populationArray=cell(aParam.nIndividuals,1);
 % 25% tit for tat 25% anti tit for tat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=1:(aParam.nIndividuals)/4
-    populationArray{i}(1)=1
-    populationArray{i}(2)=1
+    populationArray{i}(1)=1;
+    populationArray{i}(2)=1;
     
 end
 
@@ -65,9 +65,11 @@ for i=((aParam.nIndividuals)/2+1):((aParam.nIndividuals)/2+aParam.nIndividuals/4
 end
 
 for i=((aParam.nIndividuals)/2+aParam.nIndividuals/4 +1):aParam.nIndividuals
-    populationArray{i}(1)=0
-    populationArray{i}(2)=1
+    populationArray{i}(1)=0;
+    populationArray{i}(2)=1;
     
 end
+
+rPop = populationArray;
 
 end
