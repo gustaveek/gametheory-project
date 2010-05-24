@@ -1,0 +1,106 @@
+% BEGIN 020.game.tex. Explanation of the game
+\section{The game solution}\label{sec:game}
+The game described in section \ref{sec:intro:game} is never relay simulated. Instead the game is seen as a Markov process, where the states are constituted of all possible histories of a given length. A transition matrix is then generated and the distribution of states is used to appreciate the average payoff for \pone\ and \ptwo. Consider the look-up table in figure \ref{fig:game:lookup}. There every row corresponds to a state in the Markov process, and e.i.\ \pdhifour{d}{d}{c}{d} denotes the history that both \pone\ and \ptwo\ chose \textsc{d} two rounds before and in the latest preciding round \pone\ chose \textsc{c} and \ptwo\ \textsc{d}.\mypar
+
+The length of the table $N$ is decided by the longest memory of the two players according to
+\begin{equation*}
+N = 2\cdot\ceil{\frac{\max(M_\pone, M_\ptwo)}{2}}.
+\end{equation*}
+% Observe double usage of M here. This is a general problem in the presentation so far.
+
+
+\begin{figure}[!htbp]\centering\footnotesize
+\begin{tabular}{ccc}
+Action & Hist & Action \\
+\pone & & \ptwo \\
+\hline
+$s_{ 1} = p^{\textsc{i}}_{ 1}$ & \pdhifour{d}{d}{d}{d} & $t_{ 1} = p^{\textsc{ii}}_{ 1}$ \\
+$s_{ 2} = p^{\textsc{i}}_{ 2}$ & \pdhifour{d}{d}{d}{c} & $t_{ 2} = p^{\textsc{ii}}_{ 3}$ \\
+$s_{ 3} = p^{\textsc{i}}_{ 3}$ & \pdhifour{d}{d}{c}{d} & $t_{ 3} = p^{\textsc{ii}}_{ 2}$ \\
+$s_{ 4} = p^{\textsc{i}}_{ 4}$ & \pdhifour{d}{d}{c}{c} & $t_{ 4} = p^{\textsc{ii}}_{ 4}$ \\ \hline
+$s_{ 5} = p^{\textsc{i}}_{ 5}$ & \pdhifour{d}{c}{d}{d} & $t_{ 5} = p^{\textsc{ii}}_{ 9}$ \\
+$s_{ 6} = p^{\textsc{i}}_{ 6}$ & \pdhifour{d}{c}{d}{c} & $t_{ 6} = p^{\textsc{ii}}_{11}$ \\
+$s_{ 7} = p^{\textsc{i}}_{ 7}$ & \pdhifour{d}{c}{c}{d} & $t_{ 7} = p^{\textsc{ii}}_{10}$ \\
+$s_{ 8} = p^{\textsc{i}}_{ 8}$ & \pdhifour{d}{c}{c}{c} & $t_{ 8} = p^{\textsc{ii}}_{12}$ \\ \hline
+$s_{ 9} = p^{\textsc{i}}_{ 9}$ & \pdhifour{c}{d}{d}{d} & $t_{ 9} = p^{\textsc{ii}}_{ 5}$ \\
+$s_{10} = p^{\textsc{i}}_{10}$ & \pdhifour{c}{d}{d}{c} & $t_{10} = p^{\textsc{ii}}_{ 7}$ \\
+$s_{11} = p^{\textsc{i}}_{11}$ & \pdhifour{c}{d}{c}{d} & $t_{11} = p^{\textsc{ii}}_{ 6}$ \\
+$s_{12} = p^{\textsc{i}}_{12}$ & \pdhifour{c}{d}{c}{c} & $t_{12} = p^{\textsc{ii}}_{ 8}$ \\ \hline
+$s_{13} = p^{\textsc{i}}_{13}$ & \pdhifour{c}{c}{d}{d} & $t_{13} = p^{\textsc{ii}}_{13}$ \\
+$s_{14} = p^{\textsc{i}}_{14}$ & \pdhifour{c}{c}{d}{c} & $t_{14} = p^{\textsc{ii}}_{15}$ \\
+$s_{15} = p^{\textsc{i}}_{15}$ & \pdhifour{c}{c}{c}{d} & $t_{15} = p^{\textsc{ii}}_{14}$ \\
+$s_{16} = p^{\textsc{i}}_{16}$ & \pdhifour{c}{c}{c}{c} & $t_{16} = p^{\textsc{ii}}_{16}$ \\ \hline
+\end{tabular}
+
+\caption{Look-up table for player tactics for players that at the most take four historical events into account.}
+\label{fig:game:lookup}
+\end{figure}
+
+\subsection{The Transition Matrix}
+The \textsc{pd} can be seen as the dynamic system
+\begin{equation*}
+h_{t+1} = M\, h_t
+\end{equation*}
+where $h_t$ is the state probability distribution at time $t$ and $M_{N\times N}= \{ m_{i,j}\}$ the transition matrix. The elements $m_{i, j}$ of $M$ thus corresponds to the probability for transition $j\rightarrow i$. The elements $m_{i, j}$ of $M$ are calculated in the following way.\mypar
+
+Let $S = \myfrac{1}{2}\log_2\, N$ be the depth of the matrix with regard to blocks that divide the matrix in four. Use the measures
+\begin{align*}
+x &= (x_1, x_2, \dots, x_S) &\textrm{where} \quad x_s &= \floor{\frac{\makebox[1ex]{\textit{i}}-1}{4^{s-1}}} \mod 4 \quad \textrm{and}\\
+y &= (y_1, y_2, \dots, y_S) &\textrm{where} \quad y_s &= \floor{\frac{\makebox[1ex]{\textit{j}}-1}{4^{s-1}}} \mod 4
+\end{align*}
+to get the values of the matrix elements according to
+\begin{equation*}
+m_{i, j} = \left\{
+\begin{array}{ll}
+\begin{array}{l}
+A\,B\,(1-p_e)^2 + \\
+(1 - A)\,B\, p_e(1-p_e) + \\
+A\,(1-B)\,(1 - p_e)p_e + \\
+(1-A)(1-B)\,p^2 \\[\baselineskip]
+\end{array}
+ & \textrm{if~}
+\begin{array}{r@{~=~}l}
+\quad y & (x_2, x_3, \dots, x_S, y_S) \textrm{~where~} \\
+    y_S & 1, 2, 3, \textrm{~or~} 4
+\end{array}
+\\~\vspace{-0.5\baselineskip}~\\
+\begin{array}{l}
+0
+\end{array}
+ & \textrm{otherwise,}
+\end{array}
+\right.
+\end{equation*}
+and here
+\begin{align*}
+A &= \left\{%
+\begin{array}{cl}%
+(1-s_j) & \textrm{if~} x_1 = 1 \textrm{~or~} 2 \\
+s_j & \textrm{otherwise}
+\end{array}%
+\right. \\[0.5\baselineskip]
+B &= \left\{%
+\begin{array}{cl}%
+(1-t_j) & \textrm{if~} x_1 = 1 \textrm{~or~} 3 \\
+t_j & \textrm{otherwise.}%
+\end{array}%
+\right.%
+\end{align*}
+
+The sought steady state distribution $h^\ast$ is achieved through diagonalisation of $M$. The distribution $h^\ast$ is the normalised eigenvector corresponding to the eigenvalue $\lambda^\ast = 1$.\mypar
+
+The payoff $f$ for player \pone\ and \ptwo\ is then simply achieved in the following manner. First construct the state vector $g = (g_1, g_2, \dots, g_4)^\transp$ that corresponds to $M = 2$ %OBS
+as 
+\begin{displaymath}
+g_l = \sum_{\mathrm{all~} k } h_i
+\end{displaymath}
+where $k$ are those $i$ for which $x_i = l$. The payoffs are the given as
+\begin{align*}
+f(\pone) &= 3\, g_4 + 5\, g_2 + g_1 \\
+f(\ptwo) &= 3\, g_4 + 5\, g_3 + g_1.
+\end{align*}
+
+%------------------------------------------------------------------
+\subsection{Strategy representation}
+
+% END 020.game.tex
