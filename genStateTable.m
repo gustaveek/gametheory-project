@@ -112,7 +112,7 @@ if vectorLeangth1>4 || vectorLeangth2>4
     
 end
 
-rStateTable=[s,t]
+rStateTable=[s,t];
 
 return
 %end
