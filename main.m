@@ -3,7 +3,7 @@
 %
 %   Main parameters
 %
-%   Main datasturctures
+%   Main datastructures
 %
 clc; clear;
 
