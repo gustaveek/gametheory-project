@@ -5,7 +5,7 @@ function  rFloatPopulation = mutateFloat(aPopulation, aParam)
 
 for i=1:size(aPopulation,1)
 
-    for j=1:size(aPopulation{i},1) 
+    for j=1:size(aPopulation{i},2) 
     if rand<aParam.pMutFloat
     aPopulation{i}(j)=aPopulation{i}(j)+sign(rand-0.5)*aParam.mutFloat;
     end
