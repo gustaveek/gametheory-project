@@ -3,9 +3,9 @@
 function  rDuplicatedGenome = mutateDuplicate(aGenome)
 
 
-rDuplicatedGenome=[aGenome;aGenome];
+rDuplicatedGenome=[aGenome aGenome];
 
-if size(aGenome,1)==16
+if size(aGenome,2)==16
 rDuplicatedGenome=aGenome;
 end
 

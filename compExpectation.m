@@ -10,7 +10,9 @@
 
 function rExp = compExpectation ( aOrder, aFitness, aParam )
 
-expectedValue = zeros(aParam.nIndividuals,1);
+if (aParam.selectionMethod(1) == 'e')
+
+expectedValue = zeros(aParam.nIndividuals,1);   
 for i = 1:aParam.nIndividuals
     
     expectedValue(i) = aParam.nParents*(1-aParam.selectionPressure)/...
@@ -20,6 +22,13 @@ for i = 1:aParam.nIndividuals
 end
 
 rExp = expectedValue;
+
+elseif (aParam.selectionMethod(1) == 'f')
+    error('Does not exixt yet');
+
+else
+    error('No such method exists');
+end
 
 
 end

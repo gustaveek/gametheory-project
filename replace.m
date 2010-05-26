@@ -11,14 +11,14 @@
 function  rNewPop = replace (aPop, aOffs)
 
   nInd = size(aPop, 1); % total number of individuals
-  nOff = size(pOff, 1); % number of offsprins to insert
+  nOff = size(aOffs, 1); % number of offsprins to insert
   nRem = nInd - nOff;   % number from old population to insert
   
   rNewPop = cell(nInd, 1);
 
   %% get random vector
-  permInd = ranPerm(nInd);
-  permIndRem = permInd(1,nRem);
+  permInd = randperm(nInd);
+  permIndRem = permInd(1:nRem);
 
   %% insert into rNewPop
   i = 1;

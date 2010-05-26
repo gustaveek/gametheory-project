@@ -12,11 +12,11 @@ leangthPop=size(aPop,1);
 
 for i = 1:leangthPop
     if rand<aParam.pMutDuplicate
-        aPop{i}=mutateDuplicate(aPop{i})
+        aPop{i}=mutateDuplicate(aPop{i});
     end
     
     if rand<aParam.pMutSplit
-        aPop{i}=mutateSplit(aPop{i})
+        aPop{i}=mutateSplit(aPop{i});
     end
     
 end
