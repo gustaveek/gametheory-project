@@ -6,7 +6,7 @@ function  rSwitchedPopulation = mutateSwitch(aPopulation, aParam)
 
 for i=1:size(aPopulation,1)
     
-    for j=1:size(aPopulation{i},1)
+    for j=1:size(aPopulation{i},2)
         if rand<aParam.pMutSwitch
             aPopulation{i}(j)=1-aPopulation{i}(j);
         end
