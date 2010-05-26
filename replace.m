@@ -1,13 +1,39 @@
 % replace.m  Replaces old with new population 
-%    [newPopulation, inserted] = replace (population, parents)
+%    newPopulation = replace (population, offsprings)
 %
-%    @param cell array of vectors of floats, population: all individuals
-%    @param vector of int, parents: indexies into population marking those individuals that be inserted
-%    @return cell array of vectors of floats, newPopulation: the new population 
-%    @return vector of int, inserted: inexis into population marking the inserted individuals
+%    @param cell array of float vectors, population: curent population
+%    @param cell array of float vectors, offsprings: offsprings
+%    @return cell array of float vectors, newPopulation: the new population 
+%
+%    Uses random insertion 
 
-function  [rNewPop, rInserted] = replace (aPop, aParents)
 
-return 
+function  rNewPop = replace (aPop, aOffs)
 
-    yo y all, write letterz n shit.
+  nInd = size(aPop, 1); % total number of individuals
+  nOff = size(pOff, 1); % number of offsprins to insert
+  nRem = nInd - nOff;   % number from old population to insert
+  
+  rNewPop = cell(nInd, 1);
+
+  %% get random vector
+  permInd = ranPerm(nInd);
+  permIndRem = permInd(1,nRem);
+
+  %% insert into rNewPop
+  i = 1;
+  while i <= nOff,
+    rNewPop{i} = aOffs{i};
+    i = i + 1;
+  end
+
+  j = 1; 
+  while i <= nInd
+    rNewPop{i} = aPop{permIndRem(j)};
+    i = i + 1;
+    j = j + 1;
+  end
+  
+end
+
+

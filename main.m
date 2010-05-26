@@ -28,43 +28,39 @@ param = ...
 %    L = 2^M
 %
 % M is non-negative integer.
-population = cell(param.nIndividuals, 1);
+population = cell(param.nIndividuals, 1); % major population cell array
+offsprings = cell(param.nParents, 1); % generated offspring population
 
-newPopulation = cell(param.nIndividuals, 1); % exactly as population
 fitness = zeros(param.nIndividuals, 1);  % straight w r t population
 rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
 expectation = zeros(param.nIndividuals, 1); % straight values w r t rankOrder
 parents = zeros(param.nParents, 1);   % indices into population
 inserted = zeros (param.nParents, 1); % indices into newPopulation
 
-% statistic data
-bestIndividual = zeros (param.nGenerations, 1);
+bestIndividual = zeros (param.nGenerations, 1); % statistic data
 
-% begin. Initialize
+
+%% begin. Initialize
 population = initializePopulation(param);
 
-% for number of generations
+%% for number of generations
 for iGen=1:param.nGenerations,
     
     fitness = evaluatePopulation (population, param);
     
-    % rank and selection
+    %% rank and selection
     [temp, rankedOrder] = sort (fitness, 1, 'descend');
     expectation = compExpectation ( rankedOrder, fitness, param );
     
-    % sample
-    parents = sample (rankedOrder, expectation, param);
+    %% sample
+    offsprings = sample (population, rankedOrder, expectation, param);
     
-    % replacement
-    [newPopulation, inserted] = replace (population, parents);
+    %% mutation
+    offsprings =  mutate (offsprings, param); % OBS! check this syntax
     
-    % mutation
-    newPopulation = mutate (newPopulation, inserted, param);
+    %% replacement, that is generation shift
+    population = replace (population, offsprings);
     
-    % relevant statistics
-    
-    
-    % generation shift
-    population = newPopulation;
+    %% relevant statistics
     
 end
