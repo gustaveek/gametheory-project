@@ -21,22 +21,24 @@
 %    expectation to be proportional to fitness.
 
 
-function rExp = compExpectation ( aOrder, aFitness, aParam )
+function rExp = compExpectation ( aFitness, aParam )
 
 
 %% expectation exponential to ranking
 if (aParam.selectionMethod(1) == 'e')
     
-    expectedValue = zeros(aParam.nIndividuals,1);
-    for i = 1:aParam.nIndividuals
-        
-        expectedValue(i) = aParam.nParents*(1-aParam.selectionPressure)/...
-            (1 - aParam.selectionPressure ^ aParam.nIndividuals)*...
-            aParam.selectionPressure ^ ( aOrder(i) - 1 );
-        
-    end
+    disp('Exponential expectation not constructed yet')
     
-    rExp = expectedValue;
+%     expectedValue = zeros(aParam.nIndividuals,1);
+%     for i = 1:aParam.nIndividuals
+%         
+%         expectedValue(i) = aParam.nParents*(1-aParam.selectionPressure)/...
+%             (1 - aParam.selectionPressure ^ aParam.nIndividuals)*...
+%             aParam.selectionPressure ^ ( aOrder(i) - 1 );
+%         
+%     end
+%     
+%     rExp = expectedValue;
     
     %% expectation proportionate to fitness
 elseif (aParam.selectionMethod(1) == 'f')

@@ -58,11 +58,11 @@ for iGen=1:param.nGenerations,
     fitness = evaluatePopulation (population, param);
     
     %% rank and selection
-    [temp, rankedOrder] = sort (fitness, 1, 'descend');
-    expectation = compExpectation ( rankedOrder, fitness, param );
+    %[temp, rankedOrder] = sort (fitness, 1, 'descend');
+    expectation = compExpectation ( fitness, param );
     
     %% sample
-    offsprings = sample (population, rankedOrder, expectation, param);
+    offsprings = sample (population, expectation, param);
     
     %% mutation
     offsprings =  mutate (offsprings, param); % NB! check this syntax
