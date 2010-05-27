@@ -9,7 +9,7 @@ clc; clear;
 
 
 %% main parameters
-nIndividuals = 16;
+nIndividuals = 1000;
 param = ...
     struct( ...
 	   'nIndividuals', nIndividuals, ... % population size
@@ -21,8 +21,8 @@ param = ...
 	   'pMutSplit', 0.025, ...
 	   'pMutDuplicate', 0.8, ...
 	   'mutFloatLength', 0.05, ...
-	   'pMutFloat', 0.05, ...
-	   'pError', 0.05,...
+	   'pMutFloat', 0.001, ...
+	   'pError', 0.01,...
 	   'payoffCC', 3, ...
 	   'payoffCD', 0, ...
 	   'payoffDC', 5, ...
@@ -30,7 +30,7 @@ param = ...
 				% main data structures
 
 % population cell array:
-% each element in the cell array contais a row vector that is the individual's chromosome. The lenth L of the chromosome varies, but disides the individuals memory size M.
+% each element in the cell array contais a row vector that is the individual's chromosome. The lenth L of the chromosome varies, but decides the individuals memory size M.
 %
 %    L = 2^M
 %
@@ -52,7 +52,8 @@ population = initializePopulation(param);
 
 %% for number of generations
 for iGen=1:param.nGenerations,
-    
+    tic
+    %population
     fitness = evaluatePopulation (population, param);
     
     %% rank and selection
@@ -69,7 +70,7 @@ for iGen=1:param.nGenerations,
     population = replace (population, offsprings);
     
     %% relevant statistics
-    
+    toc
 end
 
 % for i= 1:size(population, 1)

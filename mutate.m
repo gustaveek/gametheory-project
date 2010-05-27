@@ -8,9 +8,9 @@
 
 function rPop = mutate (aPop, aParam)
 
-leangthPop=size(aPop,1);
+lengthPop=size(aPop,1);
 
-for i = 1:leangthPop
+for i = 1:lengthPop
     if rand<aParam.pMutDuplicate
         aPop{i}=mutateDuplicate(aPop{i});
     end
@@ -22,5 +22,4 @@ for i = 1:leangthPop
 end
 aPop=mutateSwitch(aPop, aParam);
 rPop=mutateFloat(aPop, aParam);
-
 end
