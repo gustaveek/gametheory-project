@@ -53,7 +53,7 @@ population = initializePopulation(param);
 %% for number of generations
 for iGen=1:param.nGenerations,
     tic
-    iGen
+    iGen;
     population;
     fitness = evaluatePopulation (population, param);
     
@@ -79,6 +79,12 @@ save data
 end
 
 
+<<<<<<< HEAD:main.m
 % for i= 1:size(population, 1)
 %     disp(population{i})
 % end
+=======
+ for i= 1:size(population, 1)
+     disp(population{i})
+ end
+>>>>>>> 051ff9c4e62a556e506414059d103b14036178ac:main.m

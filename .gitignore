@@ -13,6 +13,7 @@
 *.toc
 *.vrb
 *eepic
+*#*
 
 # misc file types
 *.bak
@@ -25,4 +26,4 @@
 # special files
 *matlab*
 *octave*
-
+*.mat
