@@ -9,7 +9,7 @@ clc; clear;
 
 
 %% main parameters
-nIndividuals = 1000;
+nIndividuals = 16;
 param = ...
     struct( ...
 	   'nIndividuals', nIndividuals, ... % population size
@@ -54,7 +54,7 @@ population = initializePopulation(param);
 %% for number of generations
 for iGen=1:param.nGenerations,
     tic
-    iGen
+    iGen;
     population;
     fitness = evaluatePopulation (population, param);
     
@@ -74,12 +74,12 @@ for iGen=1:param.nGenerations,
     %% relevant statistics
     toc
 
-    sparas{iGen}=population
+    sparas{iGen}=population;
 
 save data
 end
 
 
-% for i= 1:size(population, 1)
-%     disp(population{i})
-% end
+ for i= 1:size(population, 1)
+     disp(population{i})
+ end
