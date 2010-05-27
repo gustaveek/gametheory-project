@@ -1,0 +1,98 @@
+% Preamble to assignments to Dynamicla Systems
+% Gustav Eek 26 Feb 2010
+
+\documentclass[a4paper, 11pt]{article}
+\usepackage[english, swedish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+\usepackage{graphicx}
+\usepackage{latexsym, amssymb, amsmath}
+%\usepackage{here}
+%\usepackage{verbatim}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\usepackage{epic, eepic}
+\usepackage{url}
+\usepackage[hang, footnotesize]{caption} % makes caption text align behind ``Figure 1''
+\usepackage{multicol}
+\usepackage{multirow}
+
+% paragraph appearance
+\parindent 0pt
+\newcommand {\mypar} {\vspace{\baselineskip}\par}
+\newcommand{\redCol}[1]{{\color{red} #1}}
+\roman{subsubsection}
+
+% lengths and spaces
+\newlength{\myhspace}
+\setlength{\myhspace}{1cm}
+\newlength{\myvspace}
+\setlength{\myvspace}{\baselineskip}
+\newlength{\picwidth}
+\setlength{\picwidth}{.40\textwidth}
+\newcommand{\numberscale}{width=\picwidth, height=1.6\picwidth}
+\newcommand{\matlabscale}{0.7}
+\newcommand{\equspace}{\hspace{\myhspace}}
+\newcommand{\arrayspace}{\vspace{\myvspace}}
+\newcommand{\tablespace}{\vspace{.5\myvspace}}
+\newcommand{\bildbredd}{.7\linewidth}
+
+% text commands and macros
+\newcommand \co {\it}
+\newcommand \myurl [1] {{\small\url{#1}}}
+\newcommand \pd {\textsc{pd}}
+\newcommand \pone {\textsc{pi}}
+\newcommand \ptwo {\textsc{pii}}
+\newcommand \pdhitwo [2] {{%
+\parbox[b]{1.17em}{\centering\footnotesize\textsc{#1#2}}%
+}}
+\newcommand \pdhifour [4] {{%
+%\fbox{%
+\parbox[c][1.8em][c]{1.17em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.4\baselineskip}\\\textsc{#3#4}}%
+%}%
+}}
+\newcommand \pdhisix [6] {{%
+\fbox{%
+\parbox[c][1.8em][c]{1.17em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.5\baselineskip}\\\textsc{#3#4}\vspace{-0.5\baselineskip}\\\textsc{#5#6}}%
+}%
+}}
+
+
+% math commands and macros
+\newcommand{\dydt}{  \frac{dy}{dt}  }
+\newcommand{\dudt}{  \frac{du}{dt}  }
+\newcommand{\dydu}{  \frac{dy}{du}  }
+\newcommand{\dfdx}{  \frac{df}{dx}  }
+\newcommand{\dxdt}{  \frac{dx}{dt}  }
+\newcommand \vardxdt {dx/dt}
+\newcommand{\dkdt}{  \frac{dk}{dt}  }
+\newcommand \vardkdt {dk/dt}
+\newcommand{\dwdt}{  \frac{dw}{dt}  }
+\newcommand \vardwdt {dw/dt}
+\newcommand \barx {\bar{x}}
+\renewcommand \epsilon \varepsilon
+\newcommand{\myfrac}[2]{\hspace{1pt} ^{#1} \hspace{-0.8pt} / \hspace{-1.5pt} _{#2} \hspace{2pt} }
+\newcommand{\ave}[1]{\left\langle #1 \right\rangle}
+\newcommand{\avere}[2]{\ave{#1}_{(#2)}}
+\newcommand{\norm}[1]{\left| #1 \right|}
+\newcommand{\transp}{{\mathrm{T}}}
+\newcommand{\tr}[1]{{#1}^\transp}
+\newcommand{\sgn}[1]{{{\rm sgn}\left(#1 \right)}}
+\newcommand{\fix}[2][] {{{#2}^\ast_{#1}}} % second optional argument.
+\newcommand{\Exp} {\mathrm{Exp}}
+\newcommand \ceil [1] {{\left\lceil{#1}\right\rceil}}
+\newcommand \floor [1] {{\left\lfloor{#1}\right\rfloor}}
+
+
+% enviornments
+\newenvironment{code}{%
+\begin{quote}
+\begin{footnotesize}
+\begin{ttfamily}
+}%
+{%
+\end{ttfamily}
+\end{footnotesize}
+\end{quote}
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Bash-skript för att utföra komandon för att lyfta från Niklas
+
+git pull ~jakobssn/kurser/Game\ theory\ and\ rationality/Stochastic\ strategies\,\ Prisoners\ dilemma/ master
