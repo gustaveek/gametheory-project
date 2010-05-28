@@ -3,7 +3,7 @@
 %
 %   Main parameters
 %
-%   Main datasturctures
+%   Main datastructures
 %
 clc; clear;
 
@@ -15,11 +15,11 @@ param = ...
 	   'nIndividuals', nIndividuals, ... % population size
 	   'nParents', round(nIndividuals/1.6), ...
 	   'selectionPressure', 0.1, ...
-       'selectionMethod', 'exponential', ... % or 'fittprop'
-	   'nGenerations', 5, ...
-	   'pMutSwitch', 0.001, ...
-	   'pMutSplit', 0.5, ...
-	   'pMutDuplicate', 0.5, ...
+	   'selectionMethod', 'exponential', ... % or 'fitprop'
+	   'nGenerations', 10, ...
+	   'pMutSwitch', 0.05, ...
+	   'pMutSplit', 0.025, ...
+	   'pMutDuplicate', 0.8, ...
 	   'mutFloatLength', 0.05, ...
 	   'pMutFloat', 0.001, ...
 	   'pError', 0.01,...
@@ -42,18 +42,26 @@ fitness = zeros(param.nIndividuals, 1);  % straight w r t population
 rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
 expectation = zeros(param.nIndividuals, 1); % straight values w r t rankOrder
 parents = zeros(param.nParents, 1);   % indices into population
-inserted = zeros (param.nParents, 1); % indices into newPopulation
 
-bestIndividual = zeros (param.nGenerations, 1); % statistic data
+stat = ...  % statistic data
+    struct ( ...
+				% statistical parameters
+	    'nBins', 20, ...
+	    'binDist', 'logarithmic', ... % or 'linear'
+
+	    
+	    'bestIndividual', zeros (param.nGenerations, 1), ...
+	    'coopTendDist', zeros (2 * param.nGeneration, stat.nBins));
+				       
 
 
 %% begin. Initialize
 population = initializePopulation(param);
 
-
 %% for number of generations
 for iGen=1:param.nGenerations,
     tic
+
     %population
     fitness = evaluatePopulation (population, param);
     
@@ -71,6 +79,8 @@ for iGen=1:param.nGenerations,
     population = replace (population, offsprings);
     
     %% relevant statistics
+%%%    stat = statistics (population, stats, param);
+
     toc
 end
 

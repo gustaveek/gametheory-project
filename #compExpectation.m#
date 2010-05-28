@@ -11,6 +11,8 @@
 %
 %    @param struct, param: params, man!
 %
+%    @return g
+%
 %    Generates expectation value of number of offsprings of all
 %    individuals in the population. Parameters:
 %
