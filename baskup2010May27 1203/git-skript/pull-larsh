@@ -1,0 +1,4 @@
+#!/bin/bash
+# Bash-skript för att utföra komandon för att lyfta från Lars-Henrik.
+
+git pull ~larshenr/spelteori master

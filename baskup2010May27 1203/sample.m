@@ -20,18 +20,18 @@
 %    occur many times. Finally the cell array off offsprings is generated
 %    and returned.
 
-function  rOffs = sample (aPop, aExp, aParam)
+function  rOffs = sample (aPop, aOrder, aExp, aParam)
 
 %% Assuming the start value is in [0,1] (reason for rand and +index below)
 startingPoint = rand;
 parentsToOccur = zeros(aParam.nParents,1);
 index = 1;
 sumExp = 0;
-for i = 1:length(aExp)
+for i = 1:length(aOrder)
     
-    sumExp = sumExp + aExp(i);
+    sumExp = sumExp + aExp(aOrder(i));
     while sumExp > (startingPoint + index - 1)
-        parentsToOccur(index) = i;
+        parentsToOccur(index) = aOrder(i);
         index = index + 1;
     end
     

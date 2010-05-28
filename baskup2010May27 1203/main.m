@@ -9,14 +9,14 @@ clc; clear;
 
 
 %% main parameters
-nIndividuals = 100;
+nIndividuals = 1000;
 param = ...
     struct( ...
 	   'nIndividuals', nIndividuals, ... % population size
 	   'nParents', round(nIndividuals*0.4), ...
 	   'selectionPressure', 0.1, ...
-       'selectionMethod', 'fitnessproportional', ... % or 'exponential'
-	   'nGenerations', 10, ...
+       'selectionMethod', 'exponential', ... % or 'fittprop'
+	   'nGenerations', 1000, ...
 	   'pMutSwitch', 0.001, ...
 	   'pMutSplit', 0.001, ...
 	   'pMutDuplicate', 0.001, ...
@@ -43,37 +43,26 @@ rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
 expectation = zeros(param.nIndividuals, 1); % straight values w r t rankOrder
 parents = zeros(param.nParents, 1);   % indices into population
 
-stat = ...  % statistic data
-    struct ( ...
-				% statistical parameters
-	    'nBins', 20, ...
-	    'binDist', 'logarithmic', ... % or 'linear'
-
-	    
-	    'bestIndividual', zeros (param.nGenerations, 1), ...
-	    'coopTendDist', zeros (2 * param.nGeneration, stat.nBins));
-				       
+bestIndividual = zeros (param.nGenerations, 1); % statistic data
 
 
 %% begin. Initialize
 population = initializePopulation(param);
 
+
 %% for number of generations
 for iGen=1:param.nGenerations,
     tic
-
-    %%population
-    iGen;
+    iGen
     population;
-
     fitness = evaluatePopulation (population, param);
     
     %% rank and selection
-    %[temp, rankedOrder] = sort (fitness, 1, 'descend');
-    expectation = compExpectation ( fitness, param );
+    [temp, rankedOrder] = sort (fitness, 1, 'descend');
+    expectation = compExpectation ( rankedOrder, fitness, param );
     
     %% sample
-    offsprings = sample (population, expectation, param);
+    offsprings = sample (population, rankedOrder, expectation, param);
     
     %% mutation
     offsprings =  mutate (offsprings, param); % NB! check this syntax
@@ -82,16 +71,14 @@ for iGen=1:param.nGenerations,
     population = replace (population, offsprings);
     
     %% relevant statistics
-%%%    stat = statistics (population, stats, param);
-
     toc
 
-    sparas{iGen}=population;
+    sparas{iGen}=population
 
 save data
 end
 
- for i= 1:size(population, 1)
-     disp(population{i})
- end
 
+% for i= 1:size(population, 1)
+%     disp(population{i})
+% end

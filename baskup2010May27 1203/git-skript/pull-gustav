@@ -1,0 +1,4 @@
+#!/bin/bash
+# Bash-skript för att utföra komandon för att lyfta från Gustav
+
+git pull ~eekc/gametheory.git/project-pd.git master
