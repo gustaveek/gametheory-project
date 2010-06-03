@@ -14,13 +14,20 @@ function rHarsh = harshGame( aInd1, aInd2, aParam)
 
   rHarsh = 0;
   for i = 1: length (aInd1)
-    rHarsh = 3 * rHarsh + aInd2(i);
+    rHarsh = 2 * rHarsh + aInd1(i);
   end
-  rHarsh = rem(rHarsh, aParam.nHarshes) + 1;
+  rHarsh = rem(abs(fix(rHarsh)), aParam.nHarshes) + 1;
 
   for i = 1: length (aInd2)
-    rHarsh = 3 * rHarsh + aInd2(i);
+    rHarsh = 2 * rHarsh + aInd2(i);
   end
-  rHarsh = rem(rHarsh, aParam.nHarshes) + 1;
+  rHarsh = rem(abs(fix(rHarsh)), aParam.nHarshes) + 1;
+
+
+  if ~ (isinteger(rHarsh))
+    disp('Not integer');
+%    keyboard;
+  end
   
+
 end
