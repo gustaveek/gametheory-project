@@ -43,18 +43,29 @@ rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
 expectation = zeros(param.nIndividuals, 1); % straight values w r t rankOrder
 parents = zeros(param.nParents, 1);   % indices into population
 
-bestIndividual = zeros (param.nGenerations, 1); % statistic data
+stat = ...  % statistic data
+    struct ( ...
+				% statistical parameters
+	    'nBins', 20, ...
+	    'binDist', 'logarithmic', ... % or 'linear'
+
+	    
+	    'bestIndividual', zeros (param.nGenerations, 1), ...
+	    'coopTendDist', zeros (2 * param.nGeneration, stat.nBins));
+				       
 
 
 %% begin. Initialize
 population = initializePopulation(param);
 
-
 %% for number of generations
 for iGen=1:param.nGenerations,
     tic
+
+    %%population
     iGen;
     population;
+
     fitness = evaluatePopulation (population, param);
     
     %% rank and selection
@@ -71,6 +82,8 @@ for iGen=1:param.nGenerations,
     population = replace (population, offsprings);
     
     %% relevant statistics
+%%%    stat = statistics (population, stats, param);
+
     toc
 
     sparas{iGen}=population;
