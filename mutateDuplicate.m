@@ -5,7 +5,7 @@ function  rDuplicatedGenome = mutateDuplicate(aGenome)
 
 rDuplicatedGenome=[aGenome aGenome];
 
-if size(aGenome,2)==16
+if size(rDuplicatedGenome,2)==4
 rDuplicatedGenome=aGenome;
 end
 
