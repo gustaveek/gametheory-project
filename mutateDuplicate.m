@@ -2,7 +2,7 @@
 
 function  rDuplicatedGenome = mutateDuplicate(aGenome)
 
-  if length (aGenome) < 4 % duplicate only if size < 4
+  if length (aGenome) < 16 % duplicate only if size < 4
     rDuplicatedGenome = [aGenome aGenome];
   else
     rDuplicatedGenome = aGenome;
