@@ -24,8 +24,8 @@ param = ...
 	   'pMutFloat', 0.001, ...
 	   'pError', 0.01,...
 	   'payoffCC', 3, ...
-	   'payoffCD', 0, ...
 	   'payoffDC', 5, ...
+	   'payoffCD', 0, ...
 	   'payoffDD', 1);
 				% main data structures
 
@@ -43,18 +43,11 @@ rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
 expectation = zeros(param.nIndividuals, 1); % straight values w r t rankOrder
 parents = zeros(param.nParents, 1);   % indices into population
 
-stat = ...  % statistic data
-    struct ( ...
-				% statistical parameters
-	    'nBins', 20, ...
-	    'binDist', 'logarithmic', ... % or 'linear'
 
-	    
-	    'bestIndividual', zeros (param.nGenerations, 1), ...
-	    'coopTendDist', zeros (2 * param.nGeneration, stat.nBins));
+%% Statistical data and parameters
+statDist = zeros (param.nGenerations, 3);
+sparas = cell(1, param.nGenereations);
 				       
-
-
 %% begin. Initialize
 population = initializePopulation(param);
 
@@ -62,11 +55,8 @@ population = initializePopulation(param);
 for iGen=1:param.nGenerations,
     tic
 
-    %%population
-    iGen;
-    population;
-
-    fitness = evaluatePopulation (population, param);
+    %% Evaluate population 
+    [fitness, outcomeDist]= evaluatePopulation (population, param);
     
     %% rank and selection
     %[temp, rankedOrder] = sort (fitness, 1, 'descend');
@@ -82,16 +72,15 @@ for iGen=1:param.nGenerations,
     population = replace (population, offsprings);
     
     %% relevant statistics
-%%%    stat = statistics (population, stats, param);
-
-    toc
+    %%    stat = statistics (population, stats, param);
 
     sparas{iGen}=population;
+    statDist(iGen, :) = outcomeDist;
 
-save data
+    %% save every 100 iteration
+    if rem(iGen, 100) == 0
+      save data;
+    end
+
+    toc
 end
-
- for i= 1:size(population, 1)
-     disp(population{i})
- end
-

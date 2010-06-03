@@ -1,47 +1,63 @@
-% genPayOffMat.m Returns payoff-matrix (NxN) for the whole population given
-% the whole population (N*1, cellarray)
+% evaluatePopulation.m Returns population fitness 
+%    [fitness, distribution] = 
+%         evaluatePopulation (population, param)
+%    
+%    @param N x 1 cell array with float vectors, population: 
+%           population genomes
 %
-%    @param N x N matrix: population
 %    @param main parameter struct: param
-%    @param individual == individual whose payoffmatrix should be found
-
-
+% 
+%    @return: N x 1 float vector, fitness: normalised fitness.
+%             One value per individual
+%
+%    @return 1 x 3 float vector, distribution: normalised distribution 
+%            of outcomes [dd, dc (or cd), cc] in all games. 
+%
 % The payoffmatrix contains the payoffs when each individual play against
-% every other individual, entry (i,j) in the matrix contains the payoff
-% that player i gets when playing against player j. So the payoff-matrix
-% should be summed columnwise into a single column to obtain the total
-% payoff for one individual
+% every other individual, entry (I,J) in the matrix contains the payoff
+% that player I gets when playing against player J. So the payoff-matrix
+% should be summed rowise into a single column to obtain the total
+% payoff for every one individual
 
 
-function rFitness = evaluatePopulation (aPopulation, aParam)
+function [rFitness, rDist] = evaluatePopulation (aPopulation, aParam)
 
 s = zeros(4,1); % order: DD, DC, CD, CC
 payoffMatrix = zeros(aParam.nIndividuals);
+outcomeCounts = zeros(1, 3);
+
+%% DEBUG
+disp(' ');
+
+%% Perform only the lower triangle  of the game. 
 for iPlayer1 = 1:aParam.nIndividuals
-    for iPlayer2 = 1:aParam.nIndividuals
+  for iPlayer2 = 1:iPlayer1 - 1;
+
+    %% DEBUG
+    disp([iPlayer1, iPlayer2]);
         
-        % Finding the state table (from LarsH)
+        %% Find the state table (from LarsH). 
         stateTable = genStateTable( aPopulation{iPlayer1} , aPopulation{iPlayer2} );
         
-        % Finding the transition matrix
+        %% Find the transition matrix.
         M = genTransMat (stateTable, aParam);
         
-        % Solving the equation through eigenvalue analysis, using a small
-        % domain as acceptance for eigenvalue = 1.
+        %% Solv the equation through eigenvalue analysis, using a small
+        %% domain as acceptance for eigenvalue = 1.
         [V,D] = eig(M);
         matrixIndexForH = -1;
         for i = 1:size(D,1)
-            if D(i,i) > 1-1e-12 && D(i,i) < 1+1e-12
-                matrixIndexForH = i;
-            end
+          if D(i,i) > 1-1e-12 && D(i,i) < 1+1e-12
+            matrixIndexForH = i;
+          end
         end
         if matrixIndexForH == -1
-            disp('Please, never let this message appear...')
+            error('Please, never let this message appear...')
         end
         
         solutionProbabilities = V(:,matrixIndexForH);
         
-        % Adding the corresponding the elements of the state probabilities
+        %% Add together the corresponding the elements of the state probabilities
         for i = 1:4:length(solutionProbabilities)
             s(1) = s(1) + solutionProbabilities(i+0);
             s(2) = s(2) + solutionProbabilities(i+1);
@@ -49,17 +65,34 @@ for iPlayer1 = 1:aParam.nIndividuals
             s(4) = s(4) + solutionProbabilities(i+3);
         end
         
-        % Calculating the payoff
-        payoffMatrix(iPlayer1,iPlayer2) = s(1)*aParam.payoffDD +...
-            s(2)*aParam.payoffDC + s(3)*aParam.payoffCD +...
-            s(4)*aParam.payoffCC;
+        %% Calculate the payoffs
+        payoffMatrix(iPlayer1,iPlayer2) = ...
+	    s(1) * aParam.payoffDD +...
+            s(2) * aParam.payoffDC + ...
+	    s(3) * aParam.payoffCD +...
+            s(4) * aParam.payoffCC;
+
+	payottMatrix(iPlayer2, iPlayer1) = ...
+	    s(1) * aParam.payoffDD + ...
+	    s(3) * aParam.payoffDC + ...
+	    s(2) * aParam.payoffCD + ...
+	    s(4) * aParam.payoffCC;	    
+
+	%% Count outcomes
+        outcomeCounts(1) = outcomeCounts(1) + s(1);        % dd outcomes
+        outcomeCounts(2) = outcomeCounts(2) + s(2) + s(3); % dc outcomes
+        outcomeCounts(3) = outcomeCounts(3) + s(4);        % cc outcomes
         
-    end
+      end
 end
 
-% Summing together for fitness, summing columnwise
-populationFitness = sum( payoffMatrix , 2 );
-rFitness = populationFitness;
+%% Sum together for fitness, rowwise, and normalise. 
+rFitness = sum (payoffMatrix , 2 );
+invSum = 1 / sum (rFitness, 1);
+rFitness = rFitness * invSum;
+
+invSum = 1 / sum (outcomeCounts, 1);
+rDist = outcomeCounts * invSum;
 
 end
 
