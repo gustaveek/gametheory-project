@@ -24,18 +24,12 @@ function [rFitness, rDist] = evaluatePopulation (aPopulation, aParam)
 
 s = zeros(4,1); % order: DD, DC, CD, CC
 payoffMatrix = zeros(aParam.nIndividuals);
-outcomeCounts = zeros(1, 3);
-
-%% DEBUG
-disp(' ');
+outcomeCounts = zeros(1, 4);
 
 %% Perform only the lower triangle  of the game. 
 for iPlayer1 = 1:aParam.nIndividuals
   for iPlayer2 = 1:iPlayer1 - 1;
 
-    %% DEBUG
-    disp([iPlayer1, iPlayer2]);
-        
         %% Find the state table (from LarsH). 
         stateTable = genStateTable( aPopulation{iPlayer1} , aPopulation{iPlayer2} );
         
@@ -56,9 +50,12 @@ for iPlayer1 = 1:aParam.nIndividuals
         end
         
         solutionProbabilities = V(:,matrixIndexForH);
+	invSum = 1 / sum(solutionProbabilities);
+	solutionProbabilities = invSum * solutionProbabilities;
         
         %% Add together the corresponding the elements of the state probabilities
-        for i = 1:4:length(solutionProbabilities)
+        s = zeros(4,1); % order: DD, DC, CD, CC
+	for i = 1:4:length(solutionProbabilities)
             s(1) = s(1) + solutionProbabilities(i+0);
             s(2) = s(2) + solutionProbabilities(i+1);
             s(3) = s(3) + solutionProbabilities(i+2);
@@ -72,17 +69,15 @@ for iPlayer1 = 1:aParam.nIndividuals
 	    s(3) * aParam.payoffCD +...
             s(4) * aParam.payoffCC;
 
-	payottMatrix(iPlayer2, iPlayer1) = ...
+	payoffMatrix(iPlayer2, iPlayer1) = ...
 	    s(1) * aParam.payoffDD + ...
 	    s(3) * aParam.payoffDC + ...
 	    s(2) * aParam.payoffCD + ...
 	    s(4) * aParam.payoffCC;	    
 
 	%% Count outcomes
-        outcomeCounts(1) = outcomeCounts(1) + s(1);        % dd outcomes
-        outcomeCounts(2) = outcomeCounts(2) + s(2) + s(3); % dc outcomes
-        outcomeCounts(3) = outcomeCounts(3) + s(4);        % cc outcomes
-        
+        outcomeCounts = outcomeCounts + s';
+
       end
 end
 
@@ -91,7 +86,7 @@ rFitness = sum (payoffMatrix , 2 );
 invSum = 1 / sum (rFitness, 1);
 rFitness = rFitness * invSum;
 
-invSum = 1 / sum (outcomeCounts, 1);
+invSum = 1 / sum (outcomeCounts);
 rDist = outcomeCounts * invSum;
 
 end
