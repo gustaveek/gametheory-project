@@ -6,30 +6,30 @@
 function [rListOfUniqeIndividuals rPopCount ]=countPop(aPop)
 
 nInd=length(aPop);
-discretePopulation=cell(nInd,1)
+discretePopulation=cell(nInd,1);
 for i =1:nInd
-    discretePopulation{i}=discretizieInd(aPop{i});
+    discretePopulation{i}=discretizeInd(aPop{i});
 end
-numberOfEach=[];
 listToCompare{1}=discretePopulation{1};
+numberOfEach(1) = 1;
 
-for i =1:nInd
+for iInd =2:nInd
     
-    lengthGenome=length(discretePopulation{i});
+    lengthGenome=length(discretePopulation{iInd});
     count2=0;
-    for j=1:length(listToCompare)
+    for jComp=1:length(listToCompare)
         
-        if length(listToCompare{j})==lengthGenome
+        if length(listToCompare{jComp})==lengthGenome
             
             count=0;
-            for k=1:lenghtGenome
-                if discretePopulation{i}(k)==listToCompare{i}(k)
+            for k=1:lengthGenome % for indvidual iInd
+                if discretePopulation{iInd}(k)==listToCompare{jComp}(k)
                     count=count+1;
                 end
             end
             
             if count==lengthGenome
-                numberOfEach(i)=numberOfEach(i)+1
+                numberOfEach(jComp)=numberOfEach(jComp)+1;
                 count2=1;
                 break
             end
@@ -39,8 +39,8 @@ for i =1:nInd
     end
     
     if count2==0
-        listToCompare{end+1}=discretePopulation{i};
-        numberOfEach(i)=1;
+        listToCompare{end+1}=discretePopulation{iInd};
+        numberOfEach(end+1)=1;
     end
     
 end
