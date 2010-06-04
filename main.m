@@ -1,15 +1,11 @@
-% main. Main script for game theory project.
+% main.m Main script for game theory project.
 %   main
-%
-%   Main parameters
-%
-%   Main datastructures
-%
+
 clc; clear;
 
 
 %% main parameters
-nIndividuals = 100;
+nIndividuals = 12;
 param = ...
     struct( ...
 	   'nIndividuals', nIndividuals, ... % population size
@@ -27,59 +23,18 @@ param = ...
 	   'payoffDC', 5, ...
 	   'payoffCD', 0, ...
 	   'payoffDD', 1);
-				% main data structures
 
-% population cell array:
-% each element in the cell array contais a row vector that is the individual's chromosome. The lenth L of the chromosome varies, but decides the individuals memory size M.
-%
-%    L = 2^M
-%
-% M is non-negative integer.
-population = cell(param.nIndividuals, 1); % major population cell array
-offsprings = cell(param.nParents, 1); % generated offspring population
+%% Sweeping parameters
+pMutFloats = [0.01, 0.05, 0.1];
 
-fitness = zeros(param.nIndividuals, 1);  % straight w r t population
-rankOrder = zeros(param.nIndividuals, 1);% crossed indecis into population
-expectation = zeros(param.nIndividuals, 1); % straight values w r t rankOrder
-parents = zeros(param.nParents, 1);   % indices into population
-
-%% Statistical data and parameters
-statDist = zeros (param.nGenerations, 4); % in every gen, the outcome distribution dd, dc, cd, cc
-sparas = cell(1, param.nGenerations);
-				       
-%% begin. Initialize
-population = initializePopulation(param);
-
-%% for number of generations
-for iGen=1:param.nGenerations,
-    tic
-
-    %% Evaluate population 
-    [fitness, outcomeDist]= evaluatePopulation (population, param);
-    
-    %% rank and selection
-    %[temp, rankedOrder] = sort (fitness, 1, 'descend');
-    expectation = compExpectation ( fitness, param );
-    
-    %% sample
-    offsprings = sample (population, expectation, param);
-    
-    %% mutation
-    offsprings =  mutate (offsprings, param); % NB! check this syntax
-    
-    %% replacement, that is generation shift
-    population = replace (population, offsprings);
-    
-    %% relevant statistics
-    %%    stat = statistics (population, stats, param);
-
-    sparas{iGen}=population;
-    statDist(iGen, :) = outcomeDist;
-
-    %% save every 100 iteration
-    if rem(iGen, 100) == 0
-      save data100000;
-    end
-
-    toc
+for i = 1:length(pMutFloats)
+  tic
+  param.pMutFloat = pMutFloats(i);
+  disp('Runns with:')
+  disp(param);
+  [dataPop{i}, dataDist{i}] = mainLoop (param);
+  dataParam{i} = param;
+  save data3.mat dataPop dataDist dataParam
+  toc
 end
+

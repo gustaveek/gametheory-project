@@ -2,6 +2,7 @@
 # generic
 *~*
 *#*
+*.mat
 
 # latex specific
 *.aux
@@ -26,4 +27,5 @@
 # special files
 *matlab*
 *octave*
-*.mat
+*.mat*
+*data*
