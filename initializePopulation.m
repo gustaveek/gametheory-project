@@ -37,38 +37,38 @@ populationArray=cell(aParam.nIndividuals,1);
 % memory
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-for i=1:aParam.nIndividuals
-   populationArray{i}(1)=rand;
-   populationArray{i}(2)=rand;
-end
+%for i=1:aParam.nIndividuals
+%   populationArray{i}(1)=rand;
+%   populationArray{i}(2)=rand;
+%end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % initialize values in array with individuals of memory leangth 1 and 25% CC 25%DD
 % 25% tit for tat 25% anti tit for tat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% for i=1:(aParam.nIndividuals)/4
-%     populationArray{i}(1)=1;
-%     populationArray{i}(2)=1;
-%     
-% end
-% 
-% for i=((aParam.nIndividuals)/4+1):(aParam.nIndividuals)/2
-%     populationArray{i}(1)=0;
-%     populationArray{i}(2)=0;
-%     
-% end
-% 
-% for i=((aParam.nIndividuals)/2+1):((aParam.nIndividuals)/2+aParam.nIndividuals/4)
-%     populationArray{i}(1)=1;
-%     populationArray{i}(2)=0;
-%     
-% end
-% 
-% for i=((aParam.nIndividuals)/2+aParam.nIndividuals/4 +1):aParam.nIndividuals
-%     populationArray{i}(1)=0;
-%     populationArray{i}(2)=1;
-%     
-% end
+for i=1:(aParam.nIndividuals)/4
+    populationArray{i}(1)=1;
+    populationArray{i}(2)=1;
+    
+end
+
+for i=((aParam.nIndividuals)/4+1):(aParam.nIndividuals)/2
+    populationArray{i}(1)=0;
+    populationArray{i}(2)=0;
+    
+end
+
+for i=((aParam.nIndividuals)/2+1):((aParam.nIndividuals)/2+aParam.nIndividuals/4)
+    populationArray{i}(1)=1;
+    populationArray{i}(2)=0;
+    
+end
+
+for i=((aParam.nIndividuals)/2+aParam.nIndividuals/4 +1):aParam.nIndividuals
+    populationArray{i}(1)=0;
+    populationArray{i}(2)=1;
+    
+end
 
 rPop = populationArray;
 
