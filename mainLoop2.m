@@ -64,9 +64,10 @@ function [rPop, rDist rStrategies rPercentOfEachStrategy] = mainLoop (aParam)
     [strategies percentOfEachStrategy]=countPop(population,strategies);
     
     rPop{iGen} = population;
-    rDist(iGen, :) = outcomeDist;
-    rStrategies{iGen}=strategies;
+    rDist(iGen, :) = outcomeDist;  
     rPercentOfEachStrategy{iGen}=percentOfEachStrategy;
   end
-
+%(sparar bara undan den sista generationens strategicell då den senaste
+%innehåller alla tidigare )
+  rStrategies=strategies; 
 end
