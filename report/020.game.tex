@@ -90,15 +90,20 @@ t_j & \textrm{otherwise.}%
 The sought steady state distribution $h^\ast$ is achieved through diagonalisation of $M$. The distribution $h^\ast$ is the normalised eigenvector corresponding to the eigenvalue $\lambda^\ast = 1$.\mypar
 
 The payoff $f$ for player \pone\ and \ptwo\ is then simply achieved in the following manner. First construct the state vector $g = (g_1, g_2, \dots, g_4)^\transp$ that corresponds to $M = 2$ %OBS
-as 
+as
 \begin{displaymath}
 g_l = \sum_{\mathrm{all~} k } h_i
 \end{displaymath}
 where $k$ are those $i$ for which $x_i = l$. The payoffs are the given as
-\begin{align*}
-f(\pone) &= 3\, g_4 + 5\, g_2 + g_1 \\
-f(\ptwo) &= 3\, g_4 + 5\, g_3 + g_1.
-\end{align*}
+\begin{equation}
+\left\{
+\begin{array}{l@{~=~}l}
+f(\pone) & 3\, g_4 + 5\, g_2 + g_1 \\[.5\baselineskip]
+f(\ptwo) & 3\, g_4 + 5\, g_3 + g_1.
+\end{array}
+\right.
+\label{equ:game:payoff}
+\end{equation}
 
 %------------------------------------------------------------------
 \subsection{Strategy representation}

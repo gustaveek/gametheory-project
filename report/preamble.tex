@@ -38,13 +38,17 @@
 \newcommand{\tablespace}{\vspace{.5\myvspace}}
 \newcommand{\bildbredd}{.7\linewidth}
 
-% text commands and macros
-\newcommand \co {\it}
+% semantic fount considerations
+\newcommand \textco [1] {{\textit{#1}}}
 \newcommand \myurl [1] {{\small\url{#1}}}
+\newcommand \red [1] {{\color{red} #1}}
+
+% text commands, abbreviations  and macros
 \newcommand \pd {\textsc{pd}}
-\newcommand \pone {\textsc{pi}}
-\newcommand \ptwo {\textsc{pii}}
-\newcommand \pdhitwo [2] {{%
+\newcommand \ipd {\textsc{ipd}}
+\newcommand \pone {\textsc{pi}}  % player one
+\newcommand \ptwo {\textsc{pii}} % player two
+\newcommand \pdhitwo [2] {{% PD state with history two
 \parbox[b]{1.17em}{\centering\footnotesize\textsc{#1#2}}%
 }}
 \newcommand \pdhifour [4] {{%
@@ -57,7 +61,6 @@
 \parbox[c][1.8em][c]{1.17em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.5\baselineskip}\\\textsc{#3#4}\vspace{-0.5\baselineskip}\\\textsc{#5#6}}%
 }%
 }}
-
 
 % math commands and macros
 \newcommand{\dydt}{  \frac{dy}{dt}  }
