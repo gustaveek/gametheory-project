@@ -1,18 +1,17 @@
 % main.m Main script for game theory project.
 %   main
 
-clc; clear;
-clf
+clc; clear; clf;
 
 %% main parameters
-nIndividuals = 40;
+nIndividuals = 100;
 param = ...
     struct( ...
     'nIndividuals', nIndividuals, ... % population size
     'nParents', round(nIndividuals*0.4), ...
     'selectionPressure', 0.1, ...
     'selectionMethod', 'fitnessproportional', ... % or 'exponential'
-    'nGenerations', 20, ...
+    'nGenerations', 100, ...
     'pMutSwitch', 0.001, ...
     'pMutSplit', 0.001, ...
     'pMutDuplicate', 0.001, ...
@@ -57,6 +56,7 @@ subplot(2,1,1)
 g=area(strategyOccuransMatrix);
 set(g(:),'FaceColor',[1 1 1])
 set(g,'LineStyle','-','LineWidth',1)
+axis([1 param.nGenerations 0 1 ])
 %legend(M)
 
 percentDemandedToBeInThePlot=0.3;
@@ -74,14 +74,21 @@ for i = 1:size(strategyOccuransMatrix,2)
         end
     end
 end
-%numberOfStrategiesWithHighEnoughPercent
+numberOfStrategiesWithHighEnoughPercent
 
 for i=1:numberOfStrategiesWithHighEnoughPercent
 yled(i) = sum(strategyOccuransMatrix(generationWithHighestPercent(i),1:(strategyOriginalNumber(i)-1)))+0.5*highestValue(i);
 end
 
+
+
 for i=1:numberOfStrategiesWithHighEnoughPercent
-    text((generationWithHighestPercent(i)),yled(i), int2str(dataStrategies{1}{strategyOriginalNumber(i)}));
+    
+    s = [];
+    for j =1:length(dataStrategies{1}{strategyOriginalNumber(i)})
+        s = [s sprintf( '%.2f ', strategyTranslator(dataStrategies{1}{strategyOriginalNumber(i)}(j)))];
+    end
+    text((generationWithHighestPercent(i)),yled(i), s);
 end
 
 subplot(2,1,2)
@@ -89,7 +96,7 @@ h=area(dataDist{1});
 set(h(:),'FaceColor',[1 1 1])
 set(h,'LineStyle','-','LineWidth',1)
 %legend('DD','DC','CD','CC')
-
+axis([1 param.nGenerations 0 1 ])
 text(2,0.2, 'DD')
 text(2,0.4, 'CD')
 text(2,0.6, 'DC')

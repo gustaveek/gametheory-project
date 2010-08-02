@@ -1,29 +1,16 @@
 % BEGIN 010.introduction.tex
 \section{Introduction}\label{sec:intro}
 % brief history on prisoner's dilemma, iterated prisoners dilemma, iterated PD with genetic algorithms and noize, and also literature rewiew.
-The Prisoner' Dilemma (\pd) concerns two accomplices in crime that face the decision of confession or silence in a prosecution situation. The puzzle, it is said, illustrates the conflict of individual and group rationality, and since the 50:s the game has been commonly used in game theory, \cite{stanford:pd}.\mypar
+The Prisoners' Dilemma (\pd) concerns two accomplices in crime that face the decision of confession or silence in a prosecution situation, and the puzzle, it is said, illustrates the conflict of individual and group rationality. Since the 50:s the game has been commonly used in game theory to investigate cooperation among agents, \cite{stanford:pd}.\mypar
 
 % iterated version
 
-This report explains an experiment on iterated Prisoner's Dilemma (\pd) with mixed strategies and noise, where strategies are generated with genetic algorithms. This section and section and section \ref{sec:intro:game} gives a brief history and an introduction to the \pd-configuration used here. In section \ref{sec:game} the game model seen as a Markov process and the game solution is more deeply described, and in section \ref{sec:genetic} the exact model used as genetic strategy is explained. Finally in section \ref{sec:results} we give an account for simulation results, and a discussion is held.
+This report explains an experiment on iterated Prisoners' Dilemma (\ipd) with mixed strategies and noise, and where the strategies are generated with genetic algorithms. This section and section and section \ref{sec:intro:game} gives a brief history and an introduction to the \pd-configuration used here. In section \ref{sec:game} the game model seen as a Markov process and the game solution is more deeply described, and in section \ref{sec:genetic} the exact model used as genetic strategy is explained. Finally in section \ref{sec:results} we give an account for simulation results, discuss these, and suggest further development of the model.
 
 %------------------------------------------------------------------
 \subsection{The game}\label{sec:intro:game}
-% explain with pure strategies
-The game theoretical structure of the game 
-
-The prisoner's dilemma is a simple game commonly used to investigate cooperation among agents (see for example Kristians article). In the one shot game the nash equilibrium is for all players to chose defect. 
-
-
-%först enkel one shot game. nash. all defect. sedan itererad då verkar andra strategier vara bättre. tit for tat. komplicerar man det ytterligare och lägger till fel med sannolikhet p har kristian visat att ytterligare andra strategier kan dyka upp. 
-
-
-
-The payoff matrix used in this game is one of prisoner's dilemma type (altering the
-parameters in the payoff matrix would be a interesting extension of
-this work).  
-
-\dots \pone \ptwo
+% First explain with pure strategies the game theoretical structure of the game.
+The payoff matrix used in this game is one of \pd type,
 \begin{equation}
 \begin{array}{cc c|c}
                      &            & \multicolumn{2}{c}{\pone} \\
@@ -33,15 +20,22 @@ this work).
 \end{array}
 \label{equ:intro:payoff}
 \end{equation}
-g
-% iterated game 
+The possible outcomes in a one shot game are \pdhitwo{dd}, \pdhitwo{dc}, \pdhitwo{cd}, and \pdhitwo{cc}, where the first letter corresponds to \pone's choice.\mypar
+% Explain the generalised payoff matrix.
 
-
-% explain with mixed strategies
-
+% Introduce the iterated game and the history view of strategies. Also talk about what strategies there are. There might be good to cite Kristian at this point
+In the one shot game the Nash equilibrium\footnote{\red{explain Nash eq. in this footnote and give ref.}} is for all players to chose defect. However in an iterated version there might be a gain for both players to choose some other strategy. The strategy \textco{all-cooperate} for example would give a better dividends if it is cheered by both players, but \textco{tit-for-tat} is even better. % explanation!
+\mypar
 
 % the noise
+To make \red{\dots} \textco{nose} is introduced as a probability for players to make a mistake and choose the action that was not intended. The probability $p_{\mathrm{err}}$ corresponds to the chance in one round for one player to make an error. % This needs to be explained further.
+\mypar
 
+% Introduce mixed strategies
+The setup described in this report uses mixed strategies, which means that the binary choice between \textsc{d} and \textsc{c} given some history is replaced by a probability for choosing \textsc{c}.
 
+%------------------------------------------------------------------
+\subsection{Expectations}
+The main difference between the models with pure and probabilistic strategies is that the search space in the first case is discrete but in the second continuous.
 
 % END 010.introduction.tex.
