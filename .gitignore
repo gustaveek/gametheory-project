@@ -1,6 +1,8 @@
 # Git ignore file for the prisoner's dilemma project
 # generic
 *~*
+*#*
+*.mat
 
 # latex specific
 *.aux
@@ -13,7 +15,6 @@
 *.toc
 *.vrb
 *eepic
-*#*
 
 # misc file types
 *.bak
@@ -26,4 +27,5 @@
 # special files
 *matlab*
 *octave*
-*.mat
+*.mat*
+*data*

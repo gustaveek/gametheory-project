@@ -2,11 +2,10 @@
 
 function  rDuplicatedGenome = mutateDuplicate(aGenome)
 
-
-rDuplicatedGenome=[aGenome aGenome];
-
-if size(aGenome,2)==16
-rDuplicatedGenome=aGenome;
-end
-
+  if length (aGenome) < 16 % duplicate only if size < 4
+    rDuplicatedGenome = [aGenome aGenome];
+  else
+    rDuplicatedGenome = aGenome;
+  end
+  
 end
