@@ -2,17 +2,17 @@
 %   main
 
 clc; clear;
-
+clf
 
 %% main parameters
-nIndividuals = 100;
+nIndividuals = 40;
 param = ...
     struct( ...
     'nIndividuals', nIndividuals, ... % population size
     'nParents', round(nIndividuals*0.4), ...
     'selectionPressure', 0.1, ...
     'selectionMethod', 'fitnessproportional', ... % or 'exponential'
-    'nGenerations', 100, ...
+    'nGenerations', 20, ...
     'pMutSwitch', 0.001, ...
     'pMutSplit', 0.001, ...
     'pMutDuplicate', 0.001, ...
@@ -35,7 +35,7 @@ for i = 1:length(pMutFloats)
     [dataPop{i}, dataDist{i} dataStrategies{i} dataPercentOfEachStrategy{i}]= mainLoop2 (param);
     
     dataParam{i} = param;
-    save data3.mat dataPop dataDist dataParam dataStrategies dataPercentOfEachStrategy
+    save data5.mat dataPop dataDist dataParam dataStrategies dataPercentOfEachStrategy
     toc
 end
 
@@ -47,12 +47,50 @@ for j=1:param.nGenerations
     end
 end
 
+M = cell( 1 , size(strategyOccuransMatrix,2) );
+for i = 1:size(strategyOccuransMatrix,2)
+    M{i} = int2str(dataStrategies{1}{i});
+end
+
 hold on
 subplot(2,1,1)
-area(strategyOccuransMatrix)
-%legend=(legenden)
+g=area(strategyOccuransMatrix);
+set(g(:),'FaceColor',[1 1 1])
+set(g,'LineStyle','-','LineWidth',1)
+%legend(M)
+
+percentDemandedToBeInThePlot=0.3;
+numberOfStrategiesWithHighEnoughPercent=0;
+for i = 1:size(strategyOccuransMatrix,2)
+    
+    for j = 1:param.nGenerations
+        if strategyOccuransMatrix(j,i)>=percentDemandedToBeInThePlot
+            
+            numberOfStrategiesWithHighEnoughPercent = numberOfStrategiesWithHighEnoughPercent + 1;
+            dataStrategiesWithHighEnoughPercent=dataStrategies{1}{i};
+            [highestValue(numberOfStrategiesWithHighEnoughPercent) generationWithHighestPercent(numberOfStrategiesWithHighEnoughPercent)]=max(strategyOccuransMatrix(:,i));
+            strategyOriginalNumber(numberOfStrategiesWithHighEnoughPercent) = i;
+            break
+        end
+    end
+end
+%numberOfStrategiesWithHighEnoughPercent
+
+for i=1:numberOfStrategiesWithHighEnoughPercent
+yled(i) = sum(strategyOccuransMatrix(generationWithHighestPercent(i),1:(strategyOriginalNumber(i)-1)))+0.5*highestValue(i);
+end
+
+for i=1:numberOfStrategiesWithHighEnoughPercent
+    text((generationWithHighestPercent(i)),yled(i), int2str(dataStrategies{1}{strategyOriginalNumber(i)}));
+end
 
 subplot(2,1,2)
-area(dataDist{1})
-legend('DD','DC','CD','CC')
+h=area(dataDist{1});
+set(h(:),'FaceColor',[1 1 1])
+set(h,'LineStyle','-','LineWidth',1)
+%legend('DD','DC','CD','CC')
 
+text(2,0.2, 'DD')
+text(2,0.4, 'CD')
+text(2,0.6, 'DC')
+text(2,0.8, 'CC')

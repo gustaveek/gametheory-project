@@ -31,12 +31,13 @@ for iInd =1:nInd %2:nInd
             
             count=0;
             for k=1:lengthGenome % for indvidual iInd
-                if discretePopulation{iInd}(k)==listOfOldStrategies{jComp}(k)
-                    count=count+1;
+                if discretePopulation{iInd}(k) == ...
+                        listOfOldStrategies{jComp}(k)
+                    count = count + 1;
                 end
             end
             
-            if count==lengthGenome
+            if count == lengthGenome
                 numberOfEach(jComp)=numberOfEach(jComp)+1;
                 count2=1;
                 break

@@ -28,8 +28,7 @@ function [rPop, rDist rStrategies rPercentOfEachStrategy] = mainLoop (aParam)
   expectation = zeros(aParam.nIndividuals, 1); % straight values w r t rankOrder
   parents = zeros(aParam.nParents, 1);   % indices into population
 
-  strategies={}; %a list with the strategies who has been present 
-  %with the most common one in the last generation at the first 1-100 positions
+  strategies={}; %a list with the strategies who has been present
   
   %% Statistical data and parameters
   rDist = zeros(aParam.nGenerations, 4); % in every gen, the outcome distribution dd, dc, cd, cc
@@ -61,7 +60,7 @@ function [rPop, rDist rStrategies rPercentOfEachStrategy] = mainLoop (aParam)
 
   
     %anropa countPop med (population gamlaListan från countPop
-    [strategies percentOfEachStrategy]=countPop(population,strategies);
+    [strategies percentOfEachStrategy] = countPop (population, strategies);
     
     rPop{iGen} = population;
     rDist(iGen, :) = outcomeDist;  
