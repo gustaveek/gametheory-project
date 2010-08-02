@@ -4,17 +4,16 @@
 The Prisoners' Dilemma (\pd) concerns two accomplices in crime that face the decision of confession or silence in a prosecution situation, and the puzzle, it is said, illustrates the conflict of individual and group rationality. Since the 50:s the game has been commonly used in game theory to investigate cooperation among agents, \cite{stanford:pd}.\mypar
 
 % iterated version
-
-This report explains an experiment on iterated Prisoners' Dilemma (\ipd) with mixed strategies and noise, and where the strategies are generated with genetic algorithms. This section and section and section \ref{sec:intro:game} gives a brief history and an introduction to the \pd-configuration used here. In section \ref{sec:game} the game model seen as a Markov process and the game solution is more deeply described, and in section \ref{sec:genetic} the exact model used as genetic strategy is explained. Finally in section \ref{sec:results} we give an account for simulation results, discuss these, and suggest further development of the model.
+This report explains an experiment on iterated Prisoners' Dilemma (\ipd) with mixed strategies and noise, and where the strategies are generated with genetic algorithms. The work is based on and inspired by work by Kristian Lindgren, \cite{lindgren:1991}. This section and section and section \ref{sec:intro:game} gives a brief history and an introduction to the \pd-configuration used here. In section \ref{sec:game} the game model seen as a Markov process and the game solution is more deeply described, and in section \ref{sec:genetic} the exact model used as genetic strategy is explained. Finally in section \ref{sec:results} we give an account for simulation results, discuss these, and suggest further development of the model.
 
 %------------------------------------------------------------------
 \subsection{The game}\label{sec:intro:game}
 % First explain with pure strategies the game theoretical structure of the game.
-The payoff matrix used in this game is one of \pd type,
+The payoff matrix used in this game is one of \pd\ type,
 \begin{equation}
 \begin{array}{cc c|c}
-                     &            & \multicolumn{2}{c}{\pone} \\
-                     &            & \textsc{c} & \textsc{d}   \\ \cline{3-4}
+		     &            & \multicolumn{2}{c}{\pone} \\
+		     &            & \textsc{c} & \textsc{d}   \\ \cline{3-4}
 \multirow{2}*{\ptwo} & \textsc{c} & $(3, 3)$   & $(0, 5)$     \\ \cline{2-4}
 		     & \textsc{d} & $(5, 0)$   & $(1, 1)$     \\ \cline{3-4}
 \end{array}
@@ -24,18 +23,17 @@ The possible outcomes in a one shot game are \pdhitwo{dd}, \pdhitwo{dc}, \pdhitw
 % Explain the generalised payoff matrix.
 
 % Introduce the iterated game and the history view of strategies. Also talk about what strategies there are. There might be good to cite Kristian at this point
-In the one shot game the Nash equilibrium\footnote{\red{explain Nash eq. in this footnote and give ref.}} is for all players to chose defect. However in an iterated version there might be a gain for both players to choose some other strategy. The strategy \textco{all-cooperate} for example would give a better dividends if it is cheered by both players, but \textco{tit-for-tat} is even better. % explanation!
-\mypar
+In the one shot game the Nash equilibrium\footnote{The Nash equilibrium for a game is a solution that where no player will gain anything from a change in strategy, \cite{nash:1950}.} is for all players to chose defect. However in an iterated version there might be a gain for both players to choose some other strategy. The strategy \textco{all-cooperate}, for example, would give a better dividends if it is cheered by both players, and the strategy \textco{tit-for-tat} starting with \textit{cooperate} has been shown to give even better payoff in the general case since it can be played also against a defective strategy \cite{axelrod:1984}.\mypar
 
 % the noise
-To make \red{\dots} \textco{nose} is introduced as a probability for players to make a mistake and choose the action that was not intended. The probability $p_{\mathrm{err}}$ corresponds to the chance in one round for one player to make an error. % This needs to be explained further.
+To make the problem of finding an optimal strategy more complicated \textco{nose} is introduced into the game as a probability for players to make a mistake and choose an action that was not intended. The probability $p_{\mathrm{err}}$ corresponds to the chance in one round for one player to make an error. % This needs to be explained further, or?
 \mypar
 
 % Introduce mixed strategies
-The setup described in this report uses mixed strategies, which means that the binary choice between \textsc{d} and \textsc{c} given some history is replaced by a probability for choosing \textsc{c}.
+The setup described in this report also uses \textco{mixed strategies}, which means that the binary choice between \textsc{d} and \textsc{c} given some history is replaced by a probability $p$ for choosing \textsc{c} given some history. % Explain in more detail!
 
 %------------------------------------------------------------------
 \subsection{Expectations}
-The main difference between the models with pure and probabilistic strategies is that the search space in the first case is discrete but in the second continuous.
+The main difference between the models with pure and probabilistic strategies is that the strategy space in the first case is discrete but in the second continuous.
 
-% END 010.introduction.tex.
+% END 010.introduction.TeX.
