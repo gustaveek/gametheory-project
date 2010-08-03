@@ -3,7 +3,7 @@
 % Why is it impossible for us to do the simulation as a deterministic population model?
 
 \subsection{The genetic algorithm}
-The population dynamics used is a simple genetic algorithm with selection an replacement but without recombination (crossover). Let $\mu$ be the population size and $P_{t} = \{x_1, x_2, \dots, x_\mu\}$ the population at time $t$. The individuals' \textco{evaluation} is performed in comparison to all other individuals in the population as
+The population dynamics used is a simple genetic algorithm with selection and replacement but without recombination (crossover). Let $\mu$ be the population size and $P_{t} = \{x_1, x_2, \dots, x_\mu\}$ the population at time $t$. The individual \textco{evaluation} is performed in comparison to all other individuals in the population as
 \begin{equation*}
 f'(x_i) = \frac{\sum_{j = 1}^\mu f_{i,j}}{\sum_{i,j = 1}^\mu f_{i, j}}
 \end{equation*}
@@ -17,5 +17,21 @@ ev(x) = \nu f(x).
 
 
 \subsection{Mutation operators}
+Four different mutation operators are used, two w.r.t. memory length and two w.r.t. action taken (cooperate/defect). Their function and motivation are as follows
+
+\begin{itemize}
+\item Duplication operator: This mutation duplicates a chromosome and conserves its strategy by copying a chromosome and adding it to itself.
+\item Split operator: This mutation takes a chromosome a splits it in half, whereafter one part is chosen at random and kept, while the other is thrown away. In theory shorter memory strategys are covered by a longer memory and thus this operator is unnecessary, however with the large search space that is given by having a choice probability between 0 and 1 it is very unlikely that a longer memory strategy will exactly represent a shorter one.
+\item Float mutation: This mutation changes the probability for cooperation by a small increment to either more probable or less probable.
+\item Switch mutation: Switches the probability for a given action by making the assignment $P_{C} = 1 - P_{C}$. In the deterministic case, this corresponds to switching between cooperate and defect.
+\end{itemize}
+
+
+
+\subsection{Selection}
+
+\subsection{Replacement}
+
+
 
 % END 030.genetic.tex.
