@@ -106,15 +106,16 @@ f(\ptwo) & 3\, g_4 + 5\, g_3 + g_1.
 
 %------------------------------------------------------------------
 \subsection{Construction of look-up table and strategy representation} % and construction of the look-up table
-As said, the optimisation method used here is genetic algorithms. The population dynamics of the genetic algorithm is described in section \ref{sec:genetic} but at this phase the strategy encoding will be presented.\muypar
+As said, the optimisation method used here is genetic algorithms. The population dynamics of the genetic algorithm is described in section \ref{sec:genetic} but at this phase the strategy encoding will be presented.\mypar
 
 A \textit{strategy} consists of a choice of action for every possible game history. Consider again Figure \ref{fig:game:lookup}. An individual $x$'s strategy of memory length $M$ is represented as a string $c = (p_1, p_2, \dots, p_2^M)$ of length $2^M$ with probabilities. The convention is corresponding to that in Figure \ref{fig:game:lookup} that the opponent's latest action is the fastest varying.\mypar
 
 The table elements $s_1, s_2, \dots, s_N$ are simply \pone's strategy $c^{\textsc{i}}$, duplicated sufficient number of times if $2^M < N$. Regarding table elements $t_1, t_2, \dots, t_N$, \ptwo's strategy $c^{\textsc{i}}$ is permuted so that middle two quarters are shifted recursively as shown in Figure \ref{fig:game:shift}.\mypar
 
-\begin{figure}[!htbp]\centering
-
-\caption{The shift procedure for \ptwo's strategy when constructing a look-up table as shown in Figure \ref{fig:game:lookup}
+\begin{figure}[!htbp]\centering \footnotesize
+\input {eepic/chromosome.eepic}
+\caption{The shift procedure for \ptwo's strategy when constructing a look-up table as shown in Figure \ref{fig:game:lookup}}
+\label{fig:game:shift}
 \end{figure}
 
 
