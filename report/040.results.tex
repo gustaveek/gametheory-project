@@ -3,16 +3,38 @@
 % Shortcomings in the MATLAB program
 The \matlab\ program described in section \ref{sec:implem} has different shortcomings, mostly in performence, that makes it hard to carry out numerous demanding examinations of the game model. Nevertheless some investigations were carried out and the results are presented in this section.\mypar
 
+% Put some of this also in the expectation part of the introduction
+Things that are interesting to look at is whether the strategies that develops collapse to pure strategies or if some mixed strategy can get dominant. Also it is interesting to see if mixed strategies can show good performance for shorter memory length $M$ than pure strategies.\mypar
+
 % Variation of mutation rate
-One thing that investigated was he mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters was set as. 
+The first thing that investigated was the mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters was set as $p_{\textrm{split}} = p_{\textrm{dup}} = 0.1\cdot p_{\textrm{float}} = 0.1\cdot p_{\textrm{switch}}$, and thus $p_{\textrm{mut}} = 22 \cdot p_{\textrm{slpit}}$. It appears as if the mutation rate is low, $p_{\textrm{mut}}=0.01$ the almost pure strategy of \textco{all-cooperate} becomes dominant, but for $p_{\textrm{ut}}=0.1$ the opposite \textco{all-defect} becomes the dominant strategy.\mypar
+
+However, what can actually be said is that there is one dominant strategy.\mypar
 
 % Interpretation of the figures
+Figure \ref{fig:results:bla} shows some results. This is the way to interpret the figures. The lower part of Figure \ref{fig:results:bla:a} shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population. Figure \ref{fig:results:bla:b} shows a magnification of a interesting interval of the upper part of figure \ref{fig:results:bla:a}
 
-% Variation of generation gap
+\begin{figure}[!htbp]\centering
 
 
-\subsection{Improvements}
+\subfigure[Total simulation results]{
+\fbox{\includegraphics[width=0.45\linewidth]{eps/testfigur.eps}}
+\label{fig:results:bla:a}
+}
+\subfigure[Magnification]{
+\fbox{\includegraphics[width=0.45\linewidth]{eps/testfigur2.eps}}
+\label{fig:results:bla:b}
+}
+\caption{Simulation result for some intresting parameter values. Part \subref{fig:results:bla:a} is a magnification.}
+\label{fig:results:bla}
+\end{figure}
+% Variation of selection pressure
+
+
+\subsection{Improvements and alterternatives}
 For to start with, it appeared to be time consuming to evaluate all individuals against each other.
+
+\red{If the population dynamics was implemented as a dynamical system a'la Lotka-Volterra, then the discretion described in section \ref{sec:implem} could be avoided.}
 
 \subsection{Further work}
 (altering the parameters in the payoff matrix would be a interesting extension of this work).
