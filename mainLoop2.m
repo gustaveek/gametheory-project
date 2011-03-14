@@ -57,8 +57,8 @@ function [rPop, rDist rStrategies rPercentOfEachStrategy] = mainLoop (aParam)
     
     %% relevant statistics
     %%    stat = statistics (population, stats, aParam);
-
-  
+    
+    
     %anropa countPop med (population gamlaListan från countPop
     [strategies percentOfEachStrategy] = countPop (population, strategies);
     
