@@ -1,0 +1,39 @@
+;; -*- mode: org -*-
+
+Att göra-lista för rapporten. Sammanfattar allt återstående arbete. 
+
+* Rapportens avsnitt
+
+** TODO Inledningen
+
+   - [ ] Fyll ut avsnittet "Expectations"
+   - [ ] korrekturläs m.a.p. kommatering
+
+** TODO Spelets lösning
+
+   - [ ] Förklara "depth"
+   - [ ] Dela meningen "Use the depth..." i flera
+   - [ ] Förtydliga fig 2.	 
+
+** TODO Den genetiska algoritmen
+
+   - [ ] Kolla styckeindelningen 
+
+** TODO Implementationen
+
+   Vi ska beskriva vilka eftergifter som gjorts. Gustav mins inte så mycket av detta. Kräver en studie av funktioner  och datastrukturer.
+
+*** TODO Fastställ syfte, mål och nästa steg för avsnittet.
+    
+** TODO Resultat
+
+   - [ ] Flytta andra stycket till avsnitt 1.2 "Expectations"
+   - [ ] Integrera Lars-Henriks resultatavsnitt
+	 - [ ] Besluta vilka resultat som ska persenteras.
+	 - [ ] Föra över motsvarande bilder. 
+	       
+
+	
+
+   
+

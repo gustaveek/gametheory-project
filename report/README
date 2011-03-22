@@ -1,0 +1,9 @@
+Detta är LÄSMIG för rapporten till spelteoriprojektet. 
+
+Compilera rapporten med hjälp av make
+
+    $ make 
+
+Då skapas filen ./2011 - BEJ - extensive.pdf som är den slutgiltiga rapporten. 
+
+  
