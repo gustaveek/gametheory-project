@@ -1,0 +1,38 @@
+;; -*- mode: org -*-
+
+Detta är LÄSMIG för versionshantering och erapporten till spelteoriprojektet. 
+
+* Versionshantering
+
+** Rättigheter
+
+  Det ät viktigt att rättigheterna är rätt satta, för annars kan inte de andra deltagarna pulla från föråden. Använd
+
+  : $ ./git-skript/commit-chmod
+
+  eller
+
+  : $ chmod a+rX -R .
+
+
+** Föråden
+
+Följande förråd föekommer 
+
+   - /chalmers/users/eekc/gametheory-project.git
+   - /chalmers/users/larshenr/spelteori
+   - /chalmers/users/jakobssn/kurser/Game\ theory\ and\ rationality/Stochastic\ strategies\,\ Prisoners\ dilemma/
+   - /chalmers/users/eekc/repos/course.gametheory-project.git (bare)
+
+Använd skripten i ./git-skript/ eller på annat sätt
+
+* Rapporten
+
+Compilera rapporten med hjälp av make
+
+    : $ cd report
+    : $ make
+
+Då skapas filen ./2011 - BEJ - extensive.pdf som är den slutgiltiga rapporten. 
+
+  
