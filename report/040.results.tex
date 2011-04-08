@@ -3,32 +3,181 @@
 % Shortcomings in the MATLAB program
 The \matlab\ program described in section \ref{sec:implem} has different shortcomings, mostly in performence, that makes it hard to carry out numerous demanding examinations of the game model. Nevertheless some investigations were carried out and the results are presented in this section.\mypar
 
-% Put some of this also in the expectation part of the introduction
-Things that are interesting to look at is whether the strategies that develops collapse to pure strategies or if some mixed strategy can get dominant. Also it is interesting to see if mixed strategies can show good performance for shorter memory length $M$ than pure strategies.\mypar
+During simulation fitness proportional selection were used, and the parameters were set according to Table \ref{tab:results:parameters}
 
-% Variation of mutation rate
-The first thing that investigated was the mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters was set as $p_{\textrm{split}} = p_{\textrm{dup}} = 0.1\cdot p_{\textrm{float}} = 0.1\cdot p_{\textrm{switch}}$, and thus $p_{\textrm{mut}} = 22 \cdot p_{\textrm{slpit}}$. It appears as if the mutation rate is low, $p_{\textrm{mut}}=0.01$ the almost pure strategy of \textco{all-cooperate} becomes dominant, but for $p_{\textrm{ut}}=0.1$ the opposite \textco{all-defect} becomes the dominant strategy.\mypar
+
+\begin{table}[!hbtp]
+  \footnotesize
+  \centering
+  \label{tab:results:parameters}
+  \caption{Parameter settings during simulations. Toal number of simulations: 35}
+
+  a) Static parameters \red{Change to exponential form}\myhalfpar
+
+  \begin{tabular}{cc}
+    \begin{tabular}{ll@{$~=~$}l}
+      \hline
+      Antal individer        & $\mu$                      & $100$  \\
+      Antal föräldrar        & \texttt{nPar}              & variating \\
+      Selection pressure     & \texttt{selectionPressure} & 0.1    \\
+      Number generations     & \texttt{nGenerations}      & 10000  \\
+      Mut. float length      & \texttt{mutFloatLength}    & 0.05   \\
+      Payoff for \textsc{cc} & \texttt{payoffCC}          & 3      \\
+      Payoff for \textsc{dc} & \texttt{payoffDC}          & 5      \\
+      \hline
+    \end{tabular}
+    &
+    \begin{tabular}{ll@{$~=~$}l}
+      \hline
+      Payoff for \textsc{cd} & \texttt{payoffCD}          & 0         \\
+      Payoff for \textsc{dd} & \texttt{payoffDD}          & 1         \\
+      Prob. for switch       & \texttt{pMutSwitch}        & variating \\
+      Prob. for split        & \texttt{pMutSplit}         & -''-      \\
+      Prob. for duplicate    & \texttt{pMutDuplicate}     & -''-      \\
+      Prob. for float mut.   & \texttt{pMutFloat}         & -''-      \\
+      Prob. for error        & \texttt{pError}            & -''-      \\
+      \hline
+    \end{tabular}
+  \end{tabular}\mypar
+
+  b) Swept parameters\myhalfpar
+
+  \newcommand \temp {$5\cdot 10^{-4}$}
+  \begin{tabular}{*{8}{l}}
+    Simulation    & 1--5               & 6--10    & 11--15    & 16--20   & 21--25   & 26--30   & 31--35   \\
+    \hline
+    \texttt{pMut} & $\mathbf{10^{-4}}$ & \temp       & $\mathbf{10^{-3}}$ & \temp       & \temp       & \temp       & \temp       \\
+    \texttt{nPar} & $0.2\,\mu$          & $0.2\,\mu$ & $0.2\,\mu$  & $\mathbf{0.1\,\mu}$ & $0.2\,\mu$ & $\mathbf{0.4\,\mu}$ & $0.2\,\mu$ \\
+    \texttt{pErr} & $0.01$             & $0.01$   & $0.01$    & $0.01$   & $0.01$   & $0.01$   & $\mathbf{0}$ 
+  \end{tabular}
+\end{table}
+
+Alla populationer startar med $25 \%$ 00,01,10,11 strategier.\mypar % Vad betyder egentligen detta?
+
+\subsection{Simulations and results}
+% Interpretation of the figures
+The following figures shows some results. This is the way to interpret the figures. The lower part of shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population.\mypar
+
+The first thing investigated was the mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters were set as $p_{\textrm{split}} = p_{\textrm{dup}} = 0.1\,p_{\textrm{mut}}$, and$ p_{\textrm{float}} = p_{\textrm{switch}} = p_{\textrm{mu}}$. It appears as if the mutation rate is low, $p_{\textrm{mut}}=0.01$ the almost pure strategy of \textco{all-cooperate} becomes dominant, but for $p_{\textrm{ut}}=0.1$ the opposite \textco{all-defect} becomes the dominant strategy.\mypar
+
+Resultat: Inga strategier verkar osårbara men många av de som ligger nära de diskreta varianterna är
+vanliga bland de dominerande strategierna. få körningar där strategier dominerar med t.ex 0.25 eller
+0.3 I en bit (nr8 nr 28 nr 22, nr 25) kanske kan de vara stabilare då det är svårt att mutera dem till en
+elak strategi? Skulle behövt köra riktigt långa körningar för att se om det stabiliserar sig bättre, men
+förmodligen kommer det väl inte bli mer än perioder av stabilitet. Intressant med perioderna av $25\,\%$
+cc, $25\,\%$ cd, $25\,\%$ dc, $25\,\%$ dd. Har inte kollat nu vad det är för sammansättning av strategier som ger
+dessa utfall men man kan ju tycka att det är besynnerligt att de kan vara stabila under flera
+generationer då detta betyder att det finns en grupp som utnyttjar en annan. Men det kanske inte är
+samma grupp som utnyttjar varje generation I och för sig. I de flesta övergångar så går man direkt
+från en dominant strategi till en annan men ibland så sker det med ett mellanliggande strategi som
+språngbräda (exempel 10, 17, 19) (lite löst definierat hur länge en mellanliggande strategi får leva och
+ändå kallas språngbräda).
 
 However, what can actually be said is that there is one dominant strategy.\mypar
 
-% Interpretation of the figures
-Figure \ref{fig:results:bla} shows some results. This is the way to interpret the figures. The lower part of Figure \ref{fig:results:bla:a} shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population. Figure \ref{fig:results:bla:b} shows a magnification of a interesting interval of the upper part of figure \ref{fig:results:bla:a}
+\paragraph{Standard simulations 6--10 och 21--25}
+Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut som synes i Tablell \ref{tab:results:dominant}
+av detta kan man ju notera att 5 stycken är ganska snarlika en 0,1 strategi. Att de två som överlevt längst är så udda strategier som 0.2453, 0.99967 och 0.1715,1 de två längsta defective strategierna är båda 0 strategier.\mypar
 
-\begin{figure}[!htbp]\centering
+väldigt blandade resultat. Det finns både körningar där de dominerande strategierna är många och byts
+snabbt och andra där enstaka strategier dominerar under långa perioder. Både omgångar där DD och
+CC växlar mycket, omgångar där DD dominerar överlag och andra omgångar där CC dominerar
+överlag. Antal strategier I snitt 132, högst 152 lägst 106\mypar
 
+\begin{table}[!hbtp]
+  \footnotesize
+  \centering
+  \label{tab:results:dominant610}
+  \caption{Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut så här}
+  
+  \begin{tabular}{lllc}
+    Simu-  & dominating & duration  & dominating \\
+    lation & strategy   & (approx)  & at end \\
+    \hline
+    6  & 0.0110         & 4000 & x \\          
+    7  & ?              & 2000 &            \\ 
+    8  & 0.12, 1        & 5000 &            \\ 
+    9  & 0.0            & 6000 &            \\ 
+    10 & 0.09,1         & 4000 &            \\ 
+    21 & 0.0578,1       & 4500 & x \\          
+    22 & 0.2453, 9.9967 & 8000 & x \\          
+    23 & 0.05, 1        & 3500 &            \\ 
+    24 & 0.0580, 0.9991 & 3500 & x \\          
+    25 & 0.1715, 1      & 7000 & x \\          
+    \hline
+  \end{tabular}
+\end{table}
 
-\subfigure[Total simulation results]{
-%\fbox{\includegraphics[width=0.45\linewidth]{eps/testfigur.eps}}
-\label{fig:results:bla:a}
-}
-\subfigure[Magnification]{
-%\fbox{\includegraphics[width=0.45\linewidth]{eps/testfigur2.eps}}
-\label{fig:results:bla:b}
-}
-\caption{Simulation result for some intresting parameter values. Part \subref{fig:results:bla:a} is a magnification.}
-\label{fig:results:bla}
-\end{figure}
-% Variation of selection pressure
+\red{One figure here!}
+
+\paragraph{The other simulations} Jag kan nog säga varför vi ska avfärda 1:5 och 31:35 men de andra är inte helt uppenbara. Kanske
+snarare handlar om att se om man får liknande resultat trots att man ändrar på parametrar. Dock får vi
+ganska olika resultat. Kanske kan man se 0 som en trivial lösning. Den är ju svår att rå på. I
+nedanstående spalt har jag inte kollat om de är dominerande vid 10000 och därför kan en del
+potentiellt överleva längre. Där jag inte skrivit I för att jag inte vet går det givetvis att kolla upp vilka
+de är men jag orkte inte det nu.\mypar
+
+Table \ref{tab:results:dominant1130} shows which are the dominant strategies.
+
+\begin{table}[!hbtp]
+  \footnotesize
+  \centering
+  \label{tab:results:dominant610}
+  \caption{Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut så här}
+  
+  \begin{tabular}{lllc}
+    Simu-  & dominating & duration  & dominating \\
+    lation & strategy   & (approx)  & at end \\
+    \hline
+11  &  0.19,1              & 6000      \\          
+12  &  0                   & 7000               \\ 
+13  &  samarbetande        & 5000               \\ 
+14  &  0                   & 7000               \\ 
+15  &  0                   & 3000               \\ 
+16  &  0                   & 4000      \\          
+17  &  (0.05,0),(0.05,1)   & 2000,2000 \\          
+18  &  0.06,1              & 3000               \\ 
+19  &  0.06,1              & 6000      \\          
+20  &  0.06,1              & 4000      \\          
+26  & 0.1560, 0.9973       & 5000\\          
+27  & 0.8910,1             & 6000\\          
+28  & inga långvariga strat&              \\ 
+29  & 0                    & 6000\\          
+30  & samarbetande         & 3500\\          
+    \hline
+  \end{tabular}
+\end{table}
+
+\paragraph{Simulation 1--5, ändra pMut till $1\cdot 10^{-4}$}
+verkar ha för låg grad av mutationer. Minst antal strategier uppkommer och det verkar vara svårt att ta över populationen.\mypar
+
+Generellt kännetecknas körningarna av att relativt få strategier utvecklas under 10000 generationer.
+Vilket kan förklaras av att det är den lägsta mutationsgraden av alla körningar. Enstaka strategier
+dominerar långa tidsförlopp. 4 av 5 körningar dominerar DD vid 10 000 och har ett relativt starkt
+övertag under hela omgången.\mypar
+
+\red{Should we discard these and show no figures?}
+
+\paragraph{Simulation 11--15, pMut $1\cdot 10^{-3}$}
+antal strategier I snitt 175, flest 242, minst 130. vilket som väntat är mer än standardkörningen. Trots
+detta förekommer strategier som är dominerande under långa tidsperioder. Men också matcher där det
+skiftar fort. Två matcher domineras av CC och två av DD en är väldigt turbulent men slutar I stabilt
+DD.
+
+\paragraph{Simulation 16--20, nPar=0.1}
+strategier I snitt: 87. som mest 118 som minst 70. Färre föräldrar ger färre antal strategier. Långa
+perioder av både CC och DD. Men också en körning där $25\,\%$ av var är stabil under en längre period.
+
+\paragraph{Simulation 26--30, nPar=0.4}
+flest strategier av alla omgångar. I snitt ?? vilket syns I de svajiga perioderns om kännetecknas av
+snabba byten och många olika strategier. Det finns dock en del perioder som kan ses som rättså
+stabila. Tre matcher domineras av cc och tre dominerar I alla fall andra halvlek av dd.
+
+\paragraph{Simulation 31--35, pErr=0}
+väldigt svårt att bryta igenom dominerande strategi. Gör också att matcherna till stor del bara slutar I
+att alla defektar eller att alla samarbetar. Endast kortare perioder av cd, dc eller t.ex $80\,\%$ cc
+förekommer. Lite färre strategier I snitt än standardkörningen.modellen fungerar inte alls lika bra med
+noll fel men jag kommer inte ihåg exakt vad det var vi skulle leta efter för att bevisa det.
 
 
 \subsection{Improvements and alterternatives}
@@ -38,6 +187,10 @@ For to start with, it appeared to be time consuming to evaluate all individuals 
 
 \subsection{Further work}
 (altering the parameters in the payoff matrix would be a interesting extension of this work).
+
+Något för vidare studier vore att undersöka vad som händer om man slumpar starten.
+
+
 
 
 % END 040.results.tex.

@@ -27,10 +27,33 @@ Att göra-lista för rapporten. Sammanfattar allt återstående arbete.
     
 ** TODO Resultat
 
-   - [ ] Flytta andra stycket till avsnitt 1.2 "Expectations"
-   - [ ] Integrera Lars-Henriks resultatavsnitt
-	 - [ ] Besluta vilka resultat som ska persenteras.
-	 - [ ] Föra över motsvarande bilder. 
+   - [X] Flytta andra stycket till avsnitt 1.2 "Expectations"
+   - [ ] Förklara "Alla populationer startar med $25 \%$ 00,01,10,11 strategier.\mypar % Vad betyder egentligen detta?"
+         Förklaringen ska nog vara i inledningen så att kopplingen mellan typp "CC" och "00" är klar. 
+   - [ ] Integrera Lars-Henriks resultatavsnitt.
+	 - Första två tabellerna införlivade i dokumentet. 
+	 - [ ] Besluta vilka resultat som ska persenteras
+	 - [ ] Föra över motsvarande bilder
+               - [X] Fråga Lars-Henrik var bilderna afinns.
+		     Bilderna kan plockas ur ODT-dokumentet. 	       
+         - [ ] Översätt texten (LHK)
+
+   - [ ] Ta fram medelvärden för olika mätvärden t.ex. 
+         - Antal strategier i körningen 
+         - Grad av samarbete
+         - Hur länge den dominerande strategin var dominerande
+         - etc. 
+         För varje grupp av fem simuleringar. 
+
+* Övriga allmänna saker
+
+** TODO Ersätt alla "individer" och "pMut", etc. med "\mu" och "p_\textrm{mut}"
+** TODO Korrekturläs
+
+   - [ ] Gustav
+   - [ ] Lars-Henrik
+   - [ ] Niklas
+   
 	       
 
 	
