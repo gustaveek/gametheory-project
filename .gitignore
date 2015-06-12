@@ -20,6 +20,7 @@
 *.bak
 *.eps
 *.jpg
+*.png
 *.pdf
 
 # directories 
