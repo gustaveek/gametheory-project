@@ -76,8 +76,26 @@ språngbräda (exempel 10, 17, 19) (lite löst definierat hur länge en mellanli
 However, what can actually be said is that there is one dominant strategy.\mypar
 
 \paragraph{Standard simulations 6--10 och 21--25}
-Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut som synes i Tablell \ref{tab:results:dominant}
+Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut som synes i Tablell \ref{tab:results:dominant:6}
 av detta kan man ju notera att 5 stycken är ganska snarlika en 0,1 strategi. Att de två som överlevt längst är så udda strategier som 0.2453, 0.99967 och 0.1715,1 de två längsta defective strategierna är båda 0 strategier.\mypar
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{pdf/standardRun22.pdf}
+\caption{Illustration of a standard simulation result}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[angle=90, width=\linewidth]{pdf/standardRun23.pdf}
+\caption{Illustration of a standard simulation result}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[angle=90, width=\linewidth]{pdf/standardRun25.pdf}
+\caption{Illustration of a standard simulation result}
+\end{figure}
 
 väldigt blandade resultat. Det finns både körningar där de dominerande strategierna är många och byts
 snabbt och andra där enstaka strategier dominerar under långa perioder. Både omgångar där DD och
@@ -87,15 +105,17 @@ CC växlar mycket, omgångar där DD dominerar överlag och andra omgångar där
 \begin{table}[!hbtp]
   \footnotesize
   \centering
-  \label{tab:results:dominant610}
-  \caption{Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut så här}
-  
+  \label{tab:results:dominant:6}
+  \caption{Dominant strategies in the standard simulations, 6--10 and
+    21--25. The table show those strategies that were dominant during
+    the longest period in the simulations. Note that the outcome of
+    simulation 7 was hard to determine.}
   \begin{tabular}{lllc}
     Simu-  & dominating & duration  & dominating \\
     lation & strategy   & (approx)  & at end \\
     \hline
     6  & 0.0110         & 4000 & x \\          
-    7  & ?              & 2000 &            \\ 
+    7  & ---            & --- &            \\
     8  & 0.12, 1        & 5000 &            \\ 
     9  & 0.0            & 6000 &            \\ 
     10 & 0.09,1         & 4000 &            \\ 
@@ -117,14 +137,14 @@ nedanstående spalt har jag inte kollat om de är dominerande vid 10000 och där
 potentiellt överleva längre. Där jag inte skrivit I för att jag inte vet går det givetvis att kolla upp vilka
 de är men jag orkte inte det nu.\mypar
 
-Table \ref{tab:results:dominant1130} shows which are the dominant strategies.
+Table \ref{tab:results:dominant:11} shows dominant strategies in non standard simulations.
 
 \begin{table}[!hbtp]
   \footnotesize
   \centering
-  \label{tab:results:dominant610}
-  \caption{Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut så här}
-  
+  \label{tab:results:dominant:11}
+  \caption{Dominant strategies in the \textit{non} standard simulations, 11--20 and
+    26--30}
   \begin{tabular}{lllc}
     Simu-  & dominating & duration  & dominating \\
     lation & strategy   & (approx)  & at end \\
