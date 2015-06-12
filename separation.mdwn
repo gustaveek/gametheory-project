@@ -1,0 +1,30 @@
+% Documentation of separation of data and code
+
+As of this moment, [2015-06-11 tor], data files, pictures, and binary
+reports are all committed, mixed with the source code. This piece of
+wording is about how it is separated.
+
+The git repository *gametheory-project* is completed with a directory
+*gametheory-project-datablobs* in which all binary blob files
+live. Before the separation the project directory was 89M. After the
+separation the directory size became 
+
+The following pattern containing gz-, odt-, pdf-, and png-files are identified.
+
+    find * -regex '.*\.tar\.gz\|.*\.odt\|.*\.pdf\|.*\.png\|.*\.mat'
+
+Copy the data-files from current *master*
+
+	b=../gametheory-project-data
+	find * -regex '.*\.tar\.gz\|.*\.odt\|.*\.pdf\|.*\.png\|.*\.mat' |\
+	while read p; do d="$b/${p%/*}"; mkdir -p "$d"; cp -f "$p" "$d"; done
+
+Remove files matching the pattern from all of history using git-filter-branch
+
+	git filter-branch --tree-filter \
+      "find * -regex '.*\.tar\.gz\|.*\.odt\|.*\.pdf\|.*\.png\|.*\.mat' -delete" \
+	  HEAD
+
+Clone the repository which is safer than garbage collect. Must clone
+with a full path specification: *file:///path/to/repo*, since plain
+path uses hard links, which will not reduce the size.
