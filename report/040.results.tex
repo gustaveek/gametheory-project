@@ -1,7 +1,7 @@
 % BEGIN 040.results.tex. Simulation results and discussion.
 \section{Results and discussion}\label{sec:results}
 % Shortcomings in the MATLAB program
-The \matlab\ program described in section \ref{sec:implem} has different shortcomings, mostly in performence, that makes it hard to carry out numerous demanding examinations of the game model. Nevertheless some investigations were carried out and the results are presented in this section.\mypar
+The \matlab\ program described in section \ref{sec:implem} has different shortcomings, mostly in performance, that makes it hard to carry out numerous demanding examinations of the game model. Nevertheless some investigations were carried out and the results are presented in this section.\mypar
 
 During simulation fitness proportional selection were used, and the parameters were set according to Table \ref{tab:results:parameters}
 
@@ -10,15 +10,15 @@ During simulation fitness proportional selection were used, and the parameters w
   \footnotesize
   \centering
   \label{tab:results:parameters}
-  \caption{Parameter settings during simulations. Toal number of simulations: 35}
+  \caption{Parameter settings during simulations. Total number of simulations: 35}
 
   a) Static parameters \red{Change to exponential form}\myhalfpar
 
   \begin{tabular}{cc}
     \begin{tabular}{ll@{$~=~$}l}
       \hline
-      Antal individer        & $\mu$                      & $100$  \\
-      Antal föräldrar        & \texttt{nPar}              & variating \\
+      Number of individuals        & $\mu$                      & $100$  \\
+      Number of parents        & \texttt{nPar}              & variating \\
       Selection pressure     & \texttt{selectionPressure} & 0.1    \\
       Number generations     & \texttt{nGenerations}      & 10000  \\
       Mut. float length      & \texttt{mutFloatLength}    & 0.05   \\
@@ -52,43 +52,48 @@ During simulation fitness proportional selection were used, and the parameters w
   \end{tabular}
 \end{table}
 
-Alla populationer startar med $25 \%$ 00,01,10,11 strategier.\mypar % Vad betyder egentligen detta?
+All populations start with $25 \%$ 00,01,10,11 strategies. \mypar % Vad betyder egentligen detta?
 
 \subsection{Simulations and results}
 % Interpretation of the figures
-The following figures shows some results. This is the way to interpret the figures. The lower part of shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population.\mypar
+The following figures show some results. The figures should be interpreted in the following way: the lower part shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population.\mypar
 
 The first thing investigated was the mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters were set as $p_{\textrm{split}} = p_{\textrm{dup}} = 0.1\,p_{\textrm{mut}}$, and$ p_{\textrm{float}} = p_{\textrm{switch}} = p_{\textrm{mu}}$. It appears as if the mutation rate is low, $p_{\textrm{mut}}=0.01$ the almost pure strategy of \textco{all-cooperate} becomes dominant, but for $p_{\textrm{ut}}=0.1$ the opposite \textco{all-defect} becomes the dominant strategy.\mypar
 
-Resultat: Inga strategier verkar osårbara men många av de som ligger nära de diskreta varianterna är
-vanliga bland de dominerande strategierna. få körningar där strategier dominerar med t.ex 0.25 eller
-0.3 I en bit (nr8 nr 28 nr 22, nr 25) kanske kan de vara stabilare då det är svårt att mutera dem till en
-elak strategi? Skulle behövt köra riktigt långa körningar för att se om det stabiliserar sig bättre, men
-förmodligen kommer det väl inte bli mer än perioder av stabilitet. Intressant med perioderna av $25\,\%$
-cc, $25\,\%$ cd, $25\,\%$ dc, $25\,\%$ dd. Har inte kollat nu vad det är för sammansättning av strategier som ger
-dessa utfall men man kan ju tycka att det är besynnerligt att de kan vara stabila under flera
-generationer då detta betyder att det finns en grupp som utnyttjar en annan. Men det kanske inte är
-samma grupp som utnyttjar varje generation I och för sig. I de flesta övergångar så går man direkt
-från en dominant strategi till en annan men ibland så sker det med ett mellanliggande strategi som
-språngbräda (exempel 10, 17, 19) (lite löst definierat hur länge en mellanliggande strategi får leva och
-ändå kallas språngbräda).
+Result: No strategies appear invulnerable, but many of those that lie near the discrete variants are commong among the dominating strategies. There are few runs where strategies dominate with for example 0.25 or 0.3. In one bit (number 8, 28, 22, 25) they may be more stable, as it seems more difficult to mutate them to a more evil strategy. 
+
+%Resultat: Inga strategier verkar osårbara men många av de som ligger nära de diskreta varianterna är
+%vanliga bland de dominerande strategierna. få körningar där strategier dominerar med t.ex 0.25 eller
+%0.3 I en bit (nr8 nr 28 nr 22, nr 25) kanske kan de vara stabilare då det är svårt att mutera dem till en
+%elak strategi? Skulle behövt köra riktigt långa körningar för att se om det stabiliserar sig bättre, men
+%förmodligen kommer det väl inte bli mer än perioder av stabilitet. Intressant med perioderna av $25\,\%$
+%cc, $25\,\%$ cd, $25\,\%$ dc, $25\,\%$ dd. Har inte kollat nu vad det är för sammansättning av strategier som ger
+%dessa utfall men man kan ju tycka att det är besynnerligt att de kan vara stabila under flera
+%generationer då detta betyder att det finns en grupp som utnyttjar en annan. Men det kanske inte är
+%samma grupp som utnyttjar varje generation I och för sig. I de flesta övergångar så går man direkt
+%från en dominant strategi till en annan men ibland så sker det med ett mellanliggande strategi som
+%språngbräda (exempel 10, 17, 19) (lite löst definierat hur länge en mellanliggande strategi får leva och
+%ändå kallas språngbräda).
 
 However, what can actually be said is that there is one dominant strategy.\mypar
 
 \paragraph{Standard simulations 6--10 och 21--25}
-Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut som synes i Tablell \ref{tab:results:dominant}
-av detta kan man ju notera att 5 stycken är ganska snarlika en 0,1 strategi. Att de två som överlevt längst är så udda strategier som 0.2453, 0.99967 och 0.1715,1 de två längsta defective strategierna är båda 0 strategier.\mypar
+Of the standard runs 6--10 and 21--25 the strategy with the longest life is visible in table \ref{tab:results:dominant}, of this we can note that 5 of them are fairly similar to a pure 0,1 strategy. It is interesting that the two strategies that have survived the longest are 0.2453,0.99967 and 0.1715,1 see figure x and figure x+1. \mypar. This could imply a benefit of float strategies compared to binary strategies. The most effective defective strategies are 0 strategies.
 
-väldigt blandade resultat. Det finns både körningar där de dominerande strategierna är många och byts
-snabbt och andra där enstaka strategier dominerar under långa perioder. Både omgångar där DD och
-CC växlar mycket, omgångar där DD dominerar överlag och andra omgångar där CC dominerar
-överlag. Antal strategier I snitt 132, högst 152 lägst 106\mypar
+%Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut som synes i Tablell \ref{tab:results:dominant}
+%av detta kan man ju notera att 5 stycken är ganska snarlika en 0,1 strategi. Att de två som överlevt längst är så udda strategier som 0.2453, 0.99967 och 0.1715,1 de två längsta defective strategierna är båda 0 strategier.\mypar
+Apart from this the results are rather mixed results. There are both runs where the dominating strategues are plentiful and quickly replaced, and others where few strategies dominate for long periods of time. That is, we have both runs where DD and CC interchange frequently, and runs where DD dominate, and CC dominate. \mypar
+
+%väldigt blandade resultat. Det finns både körningar där de dominerande strategierna är många och byts
+%snabbt och andra där enstaka strategier dominerar under långa perioder. Både omgångar där DD och
+%CC växlar mycket, omgångar där DD dominerar överlag och andra omgångar där CC dominerar
+%överlag. Antal strategier I snitt 132, högst 152 lägst 106\mypar
 
 \begin{table}[!hbtp]
   \footnotesize
   \centering
   \label{tab:results:dominant610}
-  \caption{Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut så här}
+  \caption{Of the standardruns 6--10 and 21--25 we here show the longest living stragey}
   
   \begin{tabular}{lllc}
     Simu-  & dominating & duration  & dominating \\
@@ -108,14 +113,14 @@ CC växlar mycket, omgångar där DD dominerar överlag och andra omgångar där
   \end{tabular}
 \end{table}
 
-\red{One figure here!}
+%\red{One figure here!}
 
-\paragraph{The other simulations} Jag kan nog säga varför vi ska avfärda 1:5 och 31:35 men de andra är inte helt uppenbara. Kanske
-snarare handlar om att se om man får liknande resultat trots att man ändrar på parametrar. Dock får vi
-ganska olika resultat. Kanske kan man se 0 som en trivial lösning. Den är ju svår att rå på. I
-nedanstående spalt har jag inte kollat om de är dominerande vid 10000 och därför kan en del
-potentiellt överleva längre. Där jag inte skrivit I för att jag inte vet går det givetvis att kolla upp vilka
-de är men jag orkte inte det nu.\mypar
+%\paragraph{The other simulations} Jag kan nog säga varför vi ska avfärda 1:5 och 31:35 men de andra är inte helt uppenbara. Kanske
+%snarare handlar om att se om man får liknande resultat trots att man ändrar på parametrar. Dock får vi
+%ganska olika resultat. Kanske kan man se 0 som en trivial lösning. Den är ju svår att rå på. I
+%nedanstående spalt har jag inte kollat om de är dominerande vid 10000 och därför kan en del
+%potentiellt överleva längre. Där jag inte skrivit I för att jag inte vet går det givetvis att kolla upp vilka
+%de är men jag orkte inte det nu.\mypar
 
 Table \ref{tab:results:dominant1130} shows which are the dominant strategies.
 
@@ -148,47 +153,57 @@ Table \ref{tab:results:dominant1130} shows which are the dominant strategies.
   \end{tabular}
 \end{table}
 
-\paragraph{Simulation 1--5, ändra pMut till $1\cdot 10^{-4}$}
-verkar ha för låg grad av mutationer. Minst antal strategier uppkommer och det verkar vara svårt att ta över populationen.\mypar
+\paragraph{Simulation 1--5, pMut = $1\cdot 10^{-4}$}
+%verkar ha för låg grad av mutationer. Minst antal strategier uppkommer och det verkar vara svårt att ta över populationen.
+In general these runs develop rather few strategies, which can be explained by the lower mutation rate. single strategies dominate during long time periods. 
+\mypar
 
-Generellt kännetecknas körningarna av att relativt få strategier utvecklas under 10000 generationer.
-Vilket kan förklaras av att det är den lägsta mutationsgraden av alla körningar. Enstaka strategier
-dominerar långa tidsförlopp. 4 av 5 körningar dominerar DD vid 10 000 och har ett relativt starkt
-övertag under hela omgången.\mypar
+%Generellt kännetecknas körningarna av att relativt få strategier utvecklas under 10000 generationer.
+%Vilket kan förklaras av att det är den lägsta mutationsgraden av alla körningar. Enstaka strategier
+%dominerar långa tidsförlopp. 4 av 5 körningar dominerar DD vid 10 000 och har ett relativt starkt
+%övertag under hela omgången.\mypar
 
-\red{Should we discard these and show no figures?}
+%\red{Should we discard these and show no figures?}
 
-\paragraph{Simulation 11--15, pMut $1\cdot 10^{-3}$}
-antal strategier I snitt 175, flest 242, minst 130. vilket som väntat är mer än standardkörningen. Trots
-detta förekommer strategier som är dominerande under långa tidsperioder. Men också matcher där det
-skiftar fort. Två matcher domineras av CC och två av DD en är väldigt turbulent men slutar I stabilt
-DD.
+\paragraph{Simulation 11--15, pMut = $1\cdot 10^{-3}$}
+When setting pMut to 1*10^-3 the mutations increase as expected, and in some of the simulations there are quick changes in the strategy population. During some simulations there are however still long periods where a single strategy is dominating.
+
+
+%antal strategier I 242 snitt, 175 flest, minst 130. vilket som väntat är mer än standardkörningen. Trots
+%detta förekommer strategier som är dominerande under långa tidsperioder. Men också matcher där det
+%skiftar fort. Två matcher domineras av CC och två av DD en är väldigt turbulent men slutar I stabilt
+%DD.
 
 \paragraph{Simulation 16--20, nPar=0.1}
-strategier I snitt: 87. som mest 118 som minst 70. Färre föräldrar ger färre antal strategier. Långa
-perioder av både CC och DD. Men också en körning där $25\,\%$ av var är stabil under en längre period.
+Setting nPar=0.1 fewer parents means less strategies and slower shifts
+
+
+%strategier I snitt: 87. som mest 118 som minst 70. Färre föräldrar ger färre antal strategier. Långa
+%perioder av både CC och DD. Men också en körning där $25\,\%$ av var är stabil under en längre period.
 
 \paragraph{Simulation 26--30, nPar=0.4}
-flest strategier av alla omgångar. I snitt ?? vilket syns I de svajiga perioderns om kännetecknas av
-snabba byten och många olika strategier. Det finns dock en del perioder som kan ses som rättså
-stabila. Tre matcher domineras av cc och tre dominerar I alla fall andra halvlek av dd.
+Highest number of strategies, very turbulent periods with quick shifts in dominating strategies. there are more stable periods but they are few.
+
+ 
+%flest strategier av alla omgångar. I snitt ?? vilket syns I de svajiga perioderns om kännetecknas av
+%snabba byten och många olika strategier. Det finns dock en del perioder som kan ses som rättså
+%stabila. Tre matcher domineras av cc och tre dominerar I alla fall andra halvlek av dd.
 
 \paragraph{Simulation 31--35, pErr=0}
-väldigt svårt att bryta igenom dominerande strategi. Gör också att matcherna till stor del bara slutar I
-att alla defektar eller att alla samarbetar. Endast kortare perioder av cd, dc eller t.ex $80\,\%$ cc
-förekommer. Lite färre strategier I snitt än standardkörningen.modellen fungerar inte alls lika bra med
-noll fel men jag kommer inte ihåg exakt vad det var vi skulle leta efter för att bevisa det.
+Very difficult to break a dominating strategy, the runs commonly end up by all defecting. A bit lower number of strategies compared to the standard run. 
+%väldigt svårt att bryta igenom dominerande strategi. Gör också att matcherna till stor del bara slutar I
+%att alla defektar eller att alla samarbetar. Endast kortare perioder av cd, dc eller t.ex $80\,\%$ cc
+%förekommer. Lite färre strategier I snitt än standardkörningen.modellen fungerar inte alls lika bra med
+%noll fel men jag kommer inte ihåg exakt vad det var vi skulle leta efter för att bevisa det.
 
 
-\subsection{Improvements and alterternatives}
-For to start with, it appeared to be time consuming to evaluate all individuals against each other.
+\subsection{Discussion and further work}
+We can note that mixed strategies can outperform binary strategies over long runs. This result needs further verification, but hints at a possible opening for improving strategies employed in the prisoners dilemma game.
 
-\red{If the population dynamics was implemented as a dynamical system a'la Lotka-Volterra, then the discretion described in section \ref{sec:implem} could be avoided.}
+In an extension to this work there are a few things to consider regarding implementation and testing. Mainly the time it takes to run the model, this could be much improved by implementing the population dynamics as a dynamical system a'la Lotka-Volterra instead of evaluating every single individual against each other. This would cause the discretion described in section \ref{sec:implem} could be avoided.
 
-\subsection{Further work}
-(altering the parameters in the payoff matrix would be a interesting extension of this work).
+An interesting extension of this work would be to alter the payoff matrix and see how this affected the results. It would also be interesting to see how varying starting conditions would affect the results.
 
-Något för vidare studier vore att undersöka vad som händer om man slumpar starten.
 
 
 
