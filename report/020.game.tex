@@ -1,6 +1,6 @@
 % BEGIN 020.game.tex. Explanation of the game
 \section{The game solution}\label{sec:game}
-The game described in section \ref{sec:intro:game} is never relay simulated. Instead the game is seen as a Markov process, where the states are constituted of all possible histories of a length given by the memory length. A transition matrix is then generated and the distribution of states is used to appreciate the average payoff for \pone\ and \ptwo. Consider the look-up table in Figure \ref{fig:game:lookup}. There every row corresponds to a state in the Markov process, and e.i.\ \pdhifour{d}{d}{c}{d} denotes the history that both \pone\ and \ptwo\ chose \textsc{d} two rounds before and in the latest preciding round \pone\ chose \textsc{c} and \ptwo\ \textsc{d}.\mypar
+The game described in section \ref{sec:intro:game} is never really simulated. Instead the game is seen as a Markov process, where the states are constituted of all possible histories of a length given by the memory length. A transition matrix is then generated and the distribution of states is used to appreciate the average payoff for \pone\ and \ptwo. Consider the look-up table in Figure \ref{fig:game:lookup}. There every row corresponds to a state in the Markov process, and e.i.\ \pdhifour{d}{d}{c}{d} denotes the history that both \pone\ and \ptwo\ chose \textsc{d} two rounds before and in the latest preciding round \pone\ chose \textsc{c} and \ptwo\ \textsc{d}.\mypar
 
 The length $N$ of the table  is decided by the longest memory of the two players according to
 \begin{equation*}
