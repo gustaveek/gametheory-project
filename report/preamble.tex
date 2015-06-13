@@ -19,6 +19,7 @@
 \usepackage[hang, footnotesize]{caption} % makes caption text align behind ``Figure 1''
 \usepackage{multicol}
 \usepackage{multirow}
+\usepackage{parskip}
 
 % paragraph appearance
 \parindent 0pt
@@ -47,21 +48,21 @@
 \newcommand \red [1] {{\color{red} #1}}
 
 % text commands, abbreviations  and macros
-\newcommand \pd {\textsc{pd}}
-\newcommand \ipd {\textsc{ipd}}
+\newcommand \pd {\textsc{pd}}    % Short for ``Prisoners' Dilema''
+\newcommand \ipd {\textsc{ipd}}  % Short for ``Iterated Prisoners' Dilemma''
 \newcommand \pone {\textsc{pi}}  % player one
 \newcommand \ptwo {\textsc{pii}} % player two
 \newcommand \pdhitwo [2] {{% PD state with history two
-\parbox[b]{1.17em}{\centering\footnotesize\textsc{#1#2}}%
+\parbox[b]{1.2em}{\centering\footnotesize\textsc{#1#2}}%
 }}
 \newcommand \pdhifour [4] {{%
 %\fbox{%
-\parbox[c][1.8em][c]{1.17em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.4\baselineskip}\\\textsc{#3#4}}%
+\parbox[c][1.9em][c]{1.2em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.4\baselineskip}\\\textsc{#3#4}}%
 %}%
 }}
 \newcommand \pdhisix [6] {{%
 \fbox{%
-\parbox[c][1.8em][c]{1.17em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.5\baselineskip}\\\textsc{#3#4}\vspace{-0.5\baselineskip}\\\textsc{#5#6}}%
+\parbox[c][2.8em][c]{1.2em}{\centering\footnotesize\textsc{#1#2}\vspace{-0.5\baselineskip}\\\textsc{#3#4}\vspace{-0.5\baselineskip}\\\textsc{#5#6}}%
 }%
 }}
 \newcommand \matlab {\textsc{Matlab}}

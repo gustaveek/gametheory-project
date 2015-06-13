@@ -1,20 +1,21 @@
 % BEGIN 040.results.tex. Simulation results and discussion.
 \section{Results and discussion}\label{sec:results}
 % Shortcomings in the MATLAB program
-The \matlab\ program described in section \ref{sec:implem} has different shortcomings, mostly in performance, that makes it hard to carry out numerous demanding examinations of the game model. Nevertheless some investigations were carried out and the results are presented in this section.\mypar
+The \matlab\ program described in implementation section has different shortcomings, mostly in performance, that makes it hard to carry out numerous demanding examinations of the game model. Nevertheless some investigations were carried out and the results are presented in this section.
 
 During simulation fitness proportional selection were used, and the parameters were set according to Table \ref{tab:results:parameters}
 
 
 \begin{table}[!hbtp]
-  \footnotesize
   \centering
-  \label{tab:results:parameters}
   \caption{Parameter settings during simulations. Total number of simulations: 35}
+  \label{tab:results:parameters}
+  \footnotesize
 
-  a) Static parameters \red{Change to exponential form}\myhalfpar
+  a) Static parameters % \red{Change to exponential form}
+  \myhalfpar
 
-  \begin{tabular}{cc}
+  \begin{tabular}{c}
     \begin{tabular}{ll@{$~=~$}l}
       \hline
       Number of individuals        & $\mu$                      & $100$  \\
@@ -22,15 +23,12 @@ During simulation fitness proportional selection were used, and the parameters w
       Selection pressure     & \texttt{selectionPressure} & 0.1    \\
       Number generations     & \texttt{nGenerations}      & 10000  \\
       Mut. float length      & \texttt{mutFloatLength}    & 0.05   \\
+      \hline
       Payoff for \textsc{cc} & \texttt{payoffCC}          & 3      \\
       Payoff for \textsc{dc} & \texttt{payoffDC}          & 5      \\
-      \hline
-    \end{tabular}
-    &
-    \begin{tabular}{ll@{$~=~$}l}
-      \hline
       Payoff for \textsc{cd} & \texttt{payoffCD}          & 0         \\
       Payoff for \textsc{dd} & \texttt{payoffDD}          & 1         \\
+      \hline
       Prob. for switch       & \texttt{pMutSwitch}        & variating \\
       Prob. for split        & \texttt{pMutSplit}         & -''-      \\
       Prob. for duplicate    & \texttt{pMutDuplicate}     & -''-      \\
@@ -52,13 +50,13 @@ During simulation fitness proportional selection were used, and the parameters w
   \end{tabular}
 \end{table}
 
-All populations start with $25 \%$ 00,01,10,11 strategies. \mypar % Vad betyder egentligen detta?
+All populations start with $25 \%$ 00,01,10,11 strategies.  % Vad betyder egentligen detta?
 
 \subsection{Simulations and results}
 % Interpretation of the figures
-The following figures show some results. The figures should be interpreted in the following way: the lower part shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population.\mypar
+The following figures show some results. The figures should be interpreted in the following way: the lower part shows the distribution of game outcomes, and the upper part shows what strategies that occurs and to what extent they dominate the population.
 
-The first thing investigated was the mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters were set as $p_{\textrm{split}} = p_{\textrm{dup}} = 0.1\,p_{\textrm{mut}}$, and$ p_{\textrm{float}} = p_{\textrm{switch}} = p_{\textrm{mu}}$. It appears as if the mutation rate is low, $p_{\textrm{mut}}=0.01$ the almost pure strategy of \textco{all-cooperate} becomes dominant, but for $p_{\textrm{ut}}=0.1$ the opposite \textco{all-defect} becomes the dominant strategy.\mypar
+The first thing investigated was the mutation rate $p_{\textrm{mut}}$. In the experiments the mutation parameters were set as $p_{\textrm{split}} = p_{\textrm{dup}} = 0.1\,p_{\textrm{mut}}$, and$ p_{\textrm{float}} = p_{\textrm{switch}} = p_{\textrm{mu}}$. It appears as if the mutation rate is low, $p_{\textrm{mut}}=0.01$ the almost pure strategy of \textco{all-cooperate} becomes dominant, but for $p_{\textrm{ut}}=0.1$ the opposite \textco{all-defect} becomes the dominant strategy.
 
 Result: No strategies appear invulnerable, but many of those that lie near the discrete variants are commong among the dominating strategies. There are few runs where strategies dominate with for example 0.25 or 0.3. In one bit (number 8, 28, 22, 25) they may be more stable, as it seems more difficult to mutate them to a more evil strategy. 
 
@@ -75,13 +73,15 @@ Result: No strategies appear invulnerable, but many of those that lie near the d
 %språngbräda (exempel 10, 17, 19) (lite löst definierat hur länge en mellanliggande strategi får leva och
 %ändå kallas språngbräda).
 
-However, what can actually be said is that there is one dominant strategy.\mypar
+However, what can actually be said is that there is one dominant strategy.
 
 \paragraph{Standard simulations 6--10 och 21--25}
-Of the standard runs 6--10 and 21--25 the strategy with the longest life is visible in table \ref{tab:results:dominant}, of this we can note that 5 of them are fairly similar to a pure 0,1 strategy. For one example see Figure \ref{fig:resulsts:example:1}. It is interesting that the two strategies that have survived the longest are 0.2453,0.99967 and 0.1715,1 see Figure \ref{fig:results:example:2}  and Figure \ref{fig:results:example:3}. \mypar. This could imply a benefit of float strategies compared to binary strategies. The most effective defective strategies are 0 strategies.
+Of the standard runs 6--10 and 21--25 the strategy with the longest life is visible in table \ref{tab:results:dominant:6}, of this we can note that 5 of them are fairly similar to a pure 0,1 strategy. For one example see Figure \ref{fig:results:example:1}. It is interesting that the two strategies that have survived the longest are 0.2453,0.99967 and 0.1715,1 see Figure \ref{fig:results:example:2}  and Figure \ref{fig:results:example:3}.
+
+This could imply a benefit of float strategies compared to binary strategies. The most effective defective strategies are 0 strategies.
 
 %Av standardkörningarna 6--10 och 21--25 så är den strategi med längst liv ser ut som synes i Tablell \ref{tab:results:dominant}
-%av detta kan man ju notera att 5 stycken är ganska snarlika en 0,1 strategi. Att de två som överlevt längst är så udda strategier som 0.2453, 0.99967 och 0.1715,1 de två längsta defective strategierna är båda 0 strategier.\mypar
+%av detta kan man ju notera att 5 stycken är ganska snarlika en 0,1 strategi. Att de två som överlevt längst är så udda strategier som 0.2453, 0.99967 och 0.1715,1 de två längsta defective strategierna är båda 0 strategier.
 
 \begin{figure}[htbp]
 \centering
@@ -89,38 +89,38 @@ Of the standard runs 6--10 and 21--25 the strategy with the longest life is visi
 \caption{Illustration of a standard simulation result. This is a
   typical outcome example. The strategy dominating for most generation
   is something close to a 0,1 strategy}
-\label{fig:resulsts:example:1}
+\label{fig:results:example:1}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{pdf/standardRun22.pdf}
 \caption{Illustration of a standard simulation result}
-\label{fig:resulsts:example:2}
+\label{fig:results:example:2}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[angle=90, width=\linewidth]{pdf/standardRun25.pdf}
 \caption{Illustration of a standard simulation result}
-\label{fig:resulsts:example:3}
+\label{fig:results:example:3}
 \end{figure}
 
-Apart from this the results are rather mixed results. There are both runs where the dominating strategues are plentiful and quickly replaced, and others where few strategies dominate for long periods of time. That is, we have both runs where DD and CC interchange frequently, and runs where DD dominate, and CC dominate. \mypar
+Apart from this the results are rather mixed results. There are both runs where the dominating strategues are plentiful and quickly replaced, and others where few strategies dominate for long periods of time. That is, we have both runs where DD and CC interchange frequently, and runs where DD dominate, and CC dominate.
 
 %väldigt blandade resultat. Det finns både körningar där de dominerande strategierna är många och byts
 %snabbt och andra där enstaka strategier dominerar under långa perioder. Både omgångar där DD och
 %CC växlar mycket, omgångar där DD dominerar överlag och andra omgångar där CC dominerar
-%överlag. Antal strategier I snitt 132, högst 152 lägst 106\mypar
+%överlag. Antal strategier I snitt 132, högst 152 lägst 106.
 
 \begin{table}[!hbtp]
-  \footnotesize
   \centering
-  \label{tab:results:dominant:6}
   \caption{Dominant strategies in the standard simulations, 6--10 and
     21--25. The table show those strategies that were dominant during
     the longest period in the simulations. Note that the outcome of
     simulation 7 was hard to determine.}
+  \label{tab:results:dominant:6}
+  \footnotesize
   \begin{tabular}{lllc}
     Simu-  & dominating & duration  & dominating \\
     lation & strategy   & (approx)  & at end \\
@@ -146,16 +146,16 @@ Apart from this the results are rather mixed results. There are both runs where 
 %ganska olika resultat. Kanske kan man se 0 som en trivial lösning. Den är ju svår att rå på. I
 %nedanstående spalt har jag inte kollat om de är dominerande vid 10000 och därför kan en del
 %potentiellt överleva längre. Där jag inte skrivit I för att jag inte vet går det givetvis att kolla upp vilka
-%de är men jag orkte inte det nu.\mypar
+%de är men jag orkte inte det nu.
 
 Table \ref{tab:results:dominant:11} shows dominant strategies in non standard simulations.
 
 \begin{table}[!hbtp]
-  \footnotesize
   \centering
-  \label{tab:results:dominant:11}
   \caption{Dominant strategies in the \textit{non} standard simulations, 11--20 and
     26--30}
+  \label{tab:results:dominant:11}
+  \footnotesize
   \begin{tabular}{lllc}
     Simu-  & dominating & duration  & dominating \\
     lation & strategy   & (approx)  & at end \\
@@ -182,12 +182,12 @@ Table \ref{tab:results:dominant:11} shows dominant strategies in non standard si
 \paragraph{Simulation 1--5, pMut = $1\cdot 10^{-4}$}
 %verkar ha för låg grad av mutationer. Minst antal strategier uppkommer och det verkar vara svårt att ta över populationen.
 In general these runs develop rather few strategies, which can be explained by the lower mutation rate. single strategies dominate during long time periods. 
-\mypar
+
 
 %Generellt kännetecknas körningarna av att relativt få strategier utvecklas under 10000 generationer.
 %Vilket kan förklaras av att det är den lägsta mutationsgraden av alla körningar. Enstaka strategier
 %dominerar långa tidsförlopp. 4 av 5 körningar dominerar DD vid 10 000 och har ett relativt starkt
-%övertag under hela omgången.\mypar
+%övertag under hela omgången.
 
 %\red{Should we discard these and show no figures?}
 
@@ -226,7 +226,7 @@ Very difficult to break a dominating strategy, the runs commonly end up by all d
 \subsection{Discussion and further work}
 We can note that mixed strategies can outperform binary strategies over long runs. This result needs further verification, but hints at a possible opening for improving strategies employed in the prisoners dilemma game.
 
-In an extension to this work there are a few things to consider regarding implementation and testing. Mainly the time it takes to run the model, this could be much improved by implementing the population dynamics as a dynamical system a'la Lotka-Volterra instead of evaluating every single individual against each other. This would cause the discretion described in section \ref{sec:implem} could be avoided.
+In an extension to this work there are a few things to consider regarding implementation and testing. Mainly the time it takes to run the model, this could be much improved by implementing the population dynamics as a dynamical system a'la Lotka-Volterra instead of evaluating every single individual against each other. This would cause the discretion described in implementation section could be avoided.
 
 An interesting extension of this work would be to alter the payoff matrix and see how this affected the results. It would also be interesting to see how varying starting conditions would affect the results.
 

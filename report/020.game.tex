@@ -1,6 +1,6 @@
 % BEGIN 020.game.tex. Explanation of the game
 \section{The game solution}\label{sec:game}
-The game described in section \ref{sec:intro:game} is never really simulated. Instead the game is seen as a Markov process, where the states are constituted of all possible histories of a length given by the memory length. A transition matrix is then generated and the distribution of states is used to appreciate the average payoff for \pone\ and \ptwo. Consider the look-up table in Figure \ref{fig:game:lookup}. There every row corresponds to a state in the Markov process, and e.i.\ \pdhifour{d}{d}{c}{d} denotes the history that both \pone\ and \ptwo\ chose \textsc{d} two rounds before and in the latest preciding round \pone\ chose \textsc{c} and \ptwo\ \textsc{d}.\mypar
+The game described in section \ref{sec:intro:game} is never really simulated. Instead the game is seen as a Markov process, where the states are constituted of all possible histories of a length given by the memory length. A transition matrix is then generated and the distribution of states is used to appreciate the average payoff for \pone\ and \ptwo. Consider the look-up table in Figure \ref{fig:game:lookup}. There every row corresponds to a state in the Markov process, and e.i.\ \pdhifour{d}{d}{c}{d} denotes the history that both \pone\ and \ptwo\ chose \textsc{d} two rounds before and in the latest preciding round \pone\ chose \textsc{c} and \ptwo\ \textsc{d}.
 
 The length $N$ of the table  is decided by the longest memory of the two players according to
 \begin{equation*}
@@ -40,7 +40,7 @@ The \textsc{pd} can be seen as the dynamic system
 \begin{equation*}
 h_{t+1} = M\, h_t
 \end{equation*}
-where $h_t$ is the state probability distribution at time $t$ and $M_{N\times N}= \{ m_{i,j}\}$ the transition matrix. The elements $m_{i, j}$ of $M$ thus corresponds to the probability for transition $j\rightarrow i$. The elements $m_{i, j}$ of $M$ are calculated in the following way.\mypar
+where $h_t$ is the state probability distribution at time $t$ and $M_{N\times N}= \{ m_{i,j}\}$ the transition matrix. The elements $m_{i, j}$ of $M$ thus corresponds to the probability for transition $j\rightarrow i$. The elements $m_{i, j}$ of $M$ are calculated in the following way.
 
 Let $S = \myfrac{1}{2}\log_2\, N$ be the depth of the matrix with regard to blocks that divide the matrix in four. Use the measures
 \begin{align*}
@@ -86,7 +86,7 @@ t_j & \textrm{otherwise.}%
 \right.%
 \end{align*}
 
-The sought steady state distribution $h^\ast$ is achieved through diagonalisation of $M$. The distribution $h^\ast$ is the normalised eigenvector corresponding to the eigenvalue $\lambda = 1$.\mypar
+The sought steady state distribution $h^\ast$ is achieved through diagonalisation of $M$. The distribution $h^\ast$ is the normalised eigenvector corresponding to the eigenvalue $\lambda = 1$.
 
 The payoff $f$ for player \pone\ and \ptwo\ is then simply achieved in the following manner. First construct the state vector $g = (g_1, g_2, \dots, g_4)^\transp$ that corresponds to $M = 2$ %OBS
 as
@@ -106,17 +106,16 @@ f(\ptwo) & 3\, g_4 + 5\, g_3 + g_1.
 
 %------------------------------------------------------------------
 \subsection{Construction of look-up table and strategy representation} % and construction of the look-up table
-As said, the optimisation method used here is genetic algorithms. The population dynamics of the genetic algorithm is described in section \ref{sec:genetic} but at this phase the strategy encoding will be presented.\mypar
+As said, the optimisation method used here is genetic algorithms. The population dynamics of the genetic algorithm is described in section \ref{sec:genetic} but at this phase the strategy encoding will be presented.
 
-A \textit{strategy} consists of a choice of action for every possible game history. Consider again Figure \ref{fig:game:lookup}. An individual $x$'s strategy of memory length $M$ is represented as a string $c = (p_1, p_2, \dots, p_2^M)$ of length $2^M$ with probabilities. The convention is corresponding to that in Figure \ref{fig:game:lookup} that the opponent's latest action is the fastest varying.\mypar
+A \textit{strategy} consists of a choice of action for every possible game history. Consider again Figure \ref{fig:game:lookup}. An individual $x$'s strategy of memory length $M$ is represented as a string $c = (p_1, p_2, \dots, p_2^M)$ of length $2^M$ with probabilities. The convention is corresponding to that in Figure \ref{fig:game:lookup} that the opponent's latest action is the fastest varying.
 
-The table elements $s_1, s_2, \dots, s_N$ are simply \pone's strategy $c^{\textsc{i}}$, duplicated sufficient number of times if $2^M < N$. Regarding table elements $t_1, t_2, \dots, t_N$, \ptwo's strategy $c^{\textsc{i}}$ is permuted so that middle two quarters are shifted recursively as shown in Figure \ref{fig:game:shift}.\mypar
+The table elements $s_1, s_2, \dots, s_N$ are simply \pone's strategy $c^{\textsc{i}}$, duplicated sufficient number of times if $2^M < N$. Regarding table elements $t_1, t_2, \dots, t_N$, \ptwo's strategy $c^{\textsc{i}}$ is permuted so that middle two quarters are shifted recursively as shown in Figure \ref{fig:game:shift}.
 
 \begin{figure}[!htbp]\centering \footnotesize
-\input {eepic/chromosome.eepic}
+\input{pdftex/chromosome.pdftex}
 \caption{The shift procedure for \ptwo's strategy when constructing a look-up table as shown in Figure \ref{fig:game:lookup}}
 \label{fig:game:shift}
 \end{figure}
-
 
 % END 020.game.tex
