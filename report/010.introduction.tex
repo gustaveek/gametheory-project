@@ -4,7 +4,7 @@
 The Prisoners' Dilemma (\pd) concerns two accomplices in crime that face the decision of confession or silence in a prosecution situation, and the puzzle, it is said, illustrates the conflict of individual and group rationality. Since the 50:s the game has been commonly used in game theory to investigate cooperation among agents, \cite{stanford:pd}.
 
 % iterated version
-This report explains an experiment on iterated Prisoners' Dilemma (\ipd) with mixed strategies and noise, and where the strategies are generated with genetic algorithms. The work is based on and inspired by work by Kristian Lindgren, \cite{lindgren:1991}. This section and section and section \ref{sec:intro:game} gives a brief history and an introduction to the \pd-configuration used here. In section \ref{sec:game} the game model seen as a Markov process and the game solution is more deeply described, and in section \ref{sec:genetic} the exact model used as genetic strategy is explained. Finally in section \ref{sec:results} we give an account for simulation results, discuss these, and suggest further development of the model.
+This report explains an experiment on iterated Prisoners' Dilemma (\ipd) with mixed strategies and noise, and where the strategies are generated with genetic algorithms. The work is based on and inspired by work by Kristian Lindgren, \cite{lindgren:1991}. This section and section \ref{sec:intro:game} gives a brief history and an introduction to the \pd-configuration used here. In section \ref{sec:game} the game model seen as a Markov process and the game solution is more deeply described, and in section \ref{sec:genetic} the exact model used as genetic strategy is explained. Finally in section \ref{sec:results} we give an account for simulation results, discuss these, and suggest further development of the model.
 
 %------------------------------------------------------------------
 \subsection{The game}\label{sec:intro:game}
@@ -23,10 +23,10 @@ The possible outcomes in a one shot game are \pdhitwo{d}{d}, \pdhitwo{d}{c}, \pd
 % Explain the generalised payoff matrix.
 
 % Introduce the iterated game and the history view of strategies. Also talk about what strategies there are. There might be good to cite Kristian at this point
-In the one shot game the Nash equilibrium\footnote{The Nash equilibrium for a game is a solution that where no player will gain anything from a change in strategy, \cite{nash:1950}.} is for all players to chose defect. However in an iterated version there might be a gain for both players to choose some other strategy. The strategy \textco{all-cooperate}, for example, would give a better dividends if it is cheered by both players, and the strategy \textco{tit-for-tat} starting with \textit{cooperate} has been shown to give even better payoff in the general case since it can be played also against a defective strategy \cite{axelrod:1984}.
+In the one shot game the Nash equilibrium\footnote{The Nash equilibrium for a game is a solution that where no player will gain anything from a change in strategy, \cite{nash:1950}.} is for all players to choose defect. However in an iterated version there might be a gain for both players to choose some other strategy. The strategy \textco{all-cooperate}, for example, would give a better dividends if it is cheered by both players, and the strategy \textco{tit-for-tat} starting with \textit{cooperate} has been shown to give even better payoff in the general case since it can be played also against a defective strategy \cite{axelrod:1984}.
 
 % the noise
-To make the problem of finding an optimal strategy more complicated \textco{nose} is introduced into the game as a probability for players to make a mistake and choose an action that was not intended. The probability $p_{\mathrm{err}}$ corresponds to the chance in one round for one player to make an error. % This needs to be explained further, or?
+To make the problem of finding an optimal strategy more complicated \textco{noice} is introduced into the game as a probability for players to make a mistake and choose an action that was not intended. The probability $p_{\mathrm{err}}$ corresponds to the chance in one round for one player to make an error. % This needs to be explained further, or?
 
 
 % Introduce mixed strategies

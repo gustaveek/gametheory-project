@@ -24,6 +24,7 @@
 *.pdf
 
 # directories 
+*/pdftex/
 
 # special files
 *matlab*
